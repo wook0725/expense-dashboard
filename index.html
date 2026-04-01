@@ -420,7 +420,7 @@
 
 <!-- Navigation -->
 <div class="nav-bar">
-  <a href="지출내역_대시보드.html" class="nav-btn active">📊 대시보드</a>
+  <a href="index.html" class="nav-btn active">📊 대시보드</a>
   <a href="지출내역_특이사항.html" class="nav-btn">⚠️ 특이사항</a>
 </div>
 
@@ -1148,7 +1148,7 @@ function getFilteredData() {
   // Update period text
   const startText = startDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
   const endText = endDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
-  document.getElementById('periodText').textContent =
+  document.getElementById('periodText').innerHTML =
     '분석 기간: ' + startText + ' ~ ' + endText + ' &nbsp;|&nbsp; 신한카드 · KB은행 · 신한은행';
 
   // Return filtered daily data for charts (aggregate by day)
@@ -1299,6 +1299,44 @@ function migrateCategories() {
   });
 }
 
+// Firebase 키 정규화 함수 (저장/로드 일관성 유지)
+function sanitizeFirebaseKey(key) {
+  return key.replace(/[|]/g, '_');
+}
+
+// Firebase에 모든 지출내역 업로드 (최초 1회)
+async function uploadTransactionsToFirebase() {
+  if (!firebaseDb) {
+    console.warn('Firebase 연결 없음. 지출내역 업로드 스킵됨');
+    return;
+  }
+
+  if (localStorage.getItem('transactionsUploaded_v1')) {
+    console.log('✅ 지출내역이 이미 Firebase에 업로드됨');
+    return;
+  }
+
+  try {
+    const transactionsObj = {};
+    recentTransactions.forEach((tx, idx) => {
+      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
+      transactionsObj[key] = {
+        date: tx.date,
+        name: tx.name,
+        amount: tx.amount,
+        category: tx.cat,
+        account: tx.account
+      };
+    });
+
+    await firebaseDb.ref('transactions').set(transactionsObj);
+    localStorage.setItem('transactionsUploaded_v1', 'true');
+    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
+  } catch (e) {
+    console.warn('⚠️ Firebase 업로드 실패:', e.message);
+  }
+}
+
 // Load category overrides from Firebase
 async function loadCategoryOverrides() {
   if (!firebaseDb) {
@@ -1319,25 +1357,27 @@ async function loadCategoryOverrides() {
     }
   }
 
-  // Apply overrides to recentTransactions
-  Object.keys(categoryOverrides).forEach(key => {
-    const txIndex = recentTransactions.findIndex(tx =>
-      `${tx.date}|${tx.name}|${tx.amount}` === key
-    );
+  // Apply overrides to recentTransactions (키 정규화로 매칭)
+  Object.keys(categoryOverrides).forEach(fbKey => {
+    const txIndex = recentTransactions.findIndex(tx => {
+      const txKey = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
+      return txKey === fbKey;
+    });
     if (txIndex >= 0) {
-      recentTransactions[txIndex].cat = categoryOverrides[key];
+      recentTransactions[txIndex].cat = categoryOverrides[fbKey];
     }
   });
 }
 
 async function saveCategoryOverride(date, name, amount, newCategory) {
   const key = `${date}|${name}|${amount}`;
-  categoryOverrides[key] = newCategory;
+  const sanitizedKey = sanitizeFirebaseKey(key);
+  categoryOverrides[sanitizedKey] = newCategory;
 
-  // Firebase에 저장
+  // Firebase에 저장 (정규화된 키 사용)
   if (firebaseDb) {
     try {
-      await firebaseDb.ref('categories/' + key.replace(/[|]/g, '_')).set(newCategory);
+      await firebaseDb.ref('categories/' + sanitizedKey).set(newCategory);
       console.log('✅ Firebase에 저장됨:', key);
     } catch (e) {
       console.warn('Firebase 저장 실패:', e.message);
@@ -2007,6 +2047,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     localStorage.setItem('categoriesMigrated_v2', 'true');
     console.log('✅ 카테고리 마이그레이션 완료');
   }
+
+  // Upload all transactions to Firebase (최초 1회)
+  await uploadTransactionsToFirebase();
 
   // Load saved category overrides from Firebase
   await loadCategoryOverrides();
