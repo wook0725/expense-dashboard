@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>지출내역 대시보드</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDXr4Nxd9LRHgShhwjf9X7UUB-VX57to5Y",
+    authDomain: "expense-dashboard-fec2d.firebaseapp.com",
+    databaseURL: "https://expense-dashboard-fec2d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "expense-dashboard-fec2d",
+    storageBucket: "expense-dashboard-fec2d.firebasestorage.app",
+    messagingSenderId: "845479316735",
+    appId: "1:845479316735:web:40f0acc1ef6242159a90ca"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  window.firebaseDb = db;
+  window.firebaseRef = ref;
+  window.firebaseGet = get;
+</script>
 <style>
   :root {
     --bg: #0f172a;
@@ -362,8 +384,8 @@
 
 <!-- Navigation -->
 <div class="nav-bar">
-  <a href="지출내역_대시보드.html" class="nav-btn active">📊 대시보드</a>
-  <a href="지출내역_특이사항.html" class="nav-btn">⚠️ 특이사항</a>
+  <a href="index.html" class="nav-btn active">📊 대시보드</a>
+  <a href="anomalies.html" class="nav-btn">⚠️ 특이사항</a>
 </div>
 
 <!-- Header -->
@@ -708,27 +730,7 @@ function toggleExclude(txKey, isExcluded) {
   applyFilter();
 }
 
-const recentTransactions = [
-  {date:'2026-03-28', name:'모찌이야기', cat:'음식/카페', account:'신한카드', amount:4500},
-  {date:'2026-03-28', name:'포토이즘박스 원주무실점', cat:'기타', account:'신한카드', amount:5000},
-  {date:'2026-03-27', name:'텐퍼센트커피 원주기업도시점', cat:'음식/카페', account:'신한카드', amount:4200},
-  {date:'2026-03-26', name:'빵집오빠 원주 기업도시점', cat:'기타', account:'신한카드', amount:3000},
-  {date:'2026-03-26', name:'책읽는루브르아뜰리에원주기업도', cat:'기타', account:'신한카드', amount:60000},
-  {date:'2026-03-25', name:'네이버파이낸셜(주)', cat:'택시/교통', account:'신한카드', amount:33900},
-  {date:'2026-03-20', name:'문구방구(원주기업도시점)', cat:'기타', account:'신한카드', amount:500},
-  {date:'2026-03-20', name:'더까까주까 원주점', cat:'기타', account:'신한카드', amount:1300},
-  {date:'2026-03-20', name:'메가엠지씨커피시화(MTV)26로점', cat:'음식/카페', account:'신한카드', amount:33000},
-  {date:'2026-03-18', name:'씨유(CU)원주뉴호반점', cat:'쇼핑', account:'신한카드', amount:2400},
-  {date:'2026-03-13', name:'FBS출금', cat:'기타', account:'KB은행', amount:362990},
-  {date:'2026-03-13', name:'네이버파이낸셜(주)', cat:'택시/교통', account:'신한카드', amount:35850},
-  {date:'2026-03-13', name:'씨유(CU)원주뉴호반점', cat:'쇼핑', account:'신한카드', amount:2500},
-  {date:'2026-03-13', name:'인터넷입금이체', cat:'주거/유틸', account:'KB은행', amount:0},
-  {date:'2026-03-12', name:'책읽는루브르아뜰리에원주기업도', cat:'기타', account:'신한카드', amount:96000},
-  {date:'2026-03-12', name:'영신문구', cat:'기타', account:'신한카드', amount:1000},
-  {date:'2026-03-12', name:'CMS 공동', cat:'기타', account:'KB은행', amount:500000},
-  {date:'2026-03-12', name:'국민카드', cat:'기타', account:'KB은행', amount:3278379},
-  {date:'2026-03-11', name:'SK텔레콤', cat:'택시/교통', account:'신한카드', amount:66800},
-  {date:'2026-03-10', name:'기일출금', cat:'기타', account:'KB은행', amount:353017},
+const recentTransactions = [];
   {date:'2026-03-10', name:'국민분식', cat:'음식/카페', account:'신한카드', amount:2000},
   {date:'2026-03-10', name:'카드입금', cat:'기타', account:'KB은행', amount:0},
   {date:'2026-03-10', name:'전자금융', cat:'기타', account:'KB은행', amount:0},
