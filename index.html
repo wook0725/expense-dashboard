@@ -293,6 +293,7 @@
   .badge-택시 { background: rgba(6,182,212,0.2); color: #67e8f9; }
   .badge-대중교통 { background: rgba(34,211,238,0.2); color: #7ee8fa; }
   .badge-차량유지 { background: rgba(8,145,178,0.2); color: #44d7e6; }
+  .badge-통신비 { background: rgba(249,115,22,0.2); color: #fed7aa; }
   .badge-교육 { background: rgba(245,158,11,0.2); color: #fcd34d; }
   .badge-카페간식 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
   .badge-식당배달 { background: rgba(244,114,182,0.2); color: #fbcfe8; }
@@ -526,6 +527,7 @@
         <option value="택시">택시</option>
         <option value="대중교통">대중교통</option>
         <option value="차량유지">차량유지</option>
+        <option value="통신비">통신비</option>
         <option value="교육">교육</option>
         <option value="카페/간식">카페/간식</option>
         <option value="식당/배달">식당/배달</option>
@@ -651,10 +653,10 @@ const monthlyData = {
 };
 
 const categoryData = {
-  labels: ['기타', '온라인쇼핑', '오프라인쇼핑', '택시', '대중교통', '차량유지', '교육', '카페/간식', '식당/배달', '약국', '병원', '주거/유틸', '뷰티/헬스'],
-  amounts: [18952517, 1065088, 1065088, 671849, 671849, 0, 1135300, 220175, 220175, 0, 348200, 237410, 156000],
-  pcts:    [76.6, 4.3, 4.3, 2.7, 2.7, 0.0, 4.6, 0.9, 0.9, 0.0, 1.4, 1.0, 0.6],
-  colors:  ['#6366f1', '#10b981', '#34d399', '#06b6d4', '#22d3ee', '#0891b2', '#f59e0b', '#ec4899', '#f472b6', '#84cc16', '#22c55e', '#8b5cf6', '#a78bfa']
+  labels: ['기타', '온라인쇼핑', '오프라인쇼핑', '택시', '대중교통', '차량유지', '통신비', '교육', '카페/간식', '식당/배달', '약국', '병원', '주거/유틸', '뷰티/헬스'],
+  amounts: [18952517, 1065088, 1065088, 671849, 671849, 0, 300000, 1135300, 220175, 220175, 0, 348200, 237410, 156000],
+  pcts:    [76.6, 4.3, 4.3, 2.7, 2.7, 0.0, 1.2, 4.6, 0.9, 0.9, 0.0, 1.4, 1.0, 0.6],
+  colors:  ['#6366f1', '#10b981', '#34d399', '#06b6d4', '#22d3ee', '#0891b2', '#f97316', '#f59e0b', '#ec4899', '#f472b6', '#84cc16', '#22c55e', '#8b5cf6', '#a78bfa']
 };
 
 const dowData = {
@@ -1272,6 +1274,8 @@ function migrateCategories() {
     else if (tx.cat === '택시/교통') {
       if (tx.name.includes('네이버파이낸셜') || tx.name.includes('타다')) {
         tx.cat = '택시';
+      } else if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
+        tx.cat = '통신비'; // 통신비로 분류
       } else {
         tx.cat = '대중교통'; // 기본값
       }
@@ -1279,6 +1283,18 @@ function migrateCategories() {
     // 병원/의료 → 병원
     else if (tx.cat === '병원/의료') {
       tx.cat = '병원';
+    }
+    // 기타에서 통신비 분류
+    else if (tx.cat === '기타') {
+      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신') || tx.name.includes('LG U')) {
+        tx.cat = '통신비';
+      }
+    }
+    // 주거/유틸에서 통신비 분류
+    else if (tx.cat === '주거/유틸') {
+      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
+        tx.cat = '통신비';
+      }
     }
   });
 }
@@ -1354,11 +1370,13 @@ function closeCategoryEditModal() {
   editingTransaction = null;
 }
 
-function saveCategoryEdit() {
+async function saveCategoryEdit() {
   if (!editingTransaction) return;
 
   const newCategory = document.getElementById('categorySelect').value;
-  saveCategoryOverride(
+
+  // Firebase 저장이 완료될 때까지 기다리기
+  await saveCategoryOverride(
     editingTransaction.date,
     editingTransaction.name,
     editingTransaction.amount,
@@ -1370,10 +1388,11 @@ function saveCategoryEdit() {
     renderMonthlyDetail(currentMonthData.transactions, currentMonthData.monthLabel);
   }
 
-  // Update charts
+  // Update charts (Firebase 저장 완료 후)
   applyFilter();
 
   closeCategoryEditModal();
+  console.log('✅ 카테고리 수정 및 차트 업데이트 완료');
 }
 
 function toggleSortMode(mode) {
