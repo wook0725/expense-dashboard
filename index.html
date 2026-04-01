@@ -446,6 +446,7 @@
       <label>&nbsp;</label>
       <div style="display:flex;gap:8px">
         <button class="filter-btn reset" onclick="resetFilter()" title="초기 날짜로 복원">↺ 초기화</button>
+        <button class="filter-btn" onclick="uploadAllTransactionsNow()" title="모든 거래를 Firebase에 업로드" style="background:#06b6d4;border-color:#06b6d4">☁️ DB업로드</button>
       </div>
     </div>
   </div>
@@ -1334,6 +1335,53 @@ async function uploadTransactionsToFirebase() {
     console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
   } catch (e) {
     console.warn('⚠️ Firebase 업로드 실패:', e.message);
+  }
+}
+
+// 사용자가 버튼으로 수동 업로드 (강제 업로드)
+async function uploadAllTransactionsNow() {
+  if (!firebaseDb) {
+    alert('❌ Firebase 연결 실패\n\n개발자 도구 → Console에서 오류 확인');
+    return;
+  }
+
+  const btn = event.target;
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '⏳ 업로드 중...';
+
+  try {
+    const transactionsObj = {};
+    recentTransactions.forEach((tx, idx) => {
+      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
+      transactionsObj[key] = {
+        date: tx.date,
+        name: tx.name,
+        amount: tx.amount,
+        category: tx.cat,
+        account: tx.account,
+        uploadedAt: new Date().toISOString()
+      };
+    });
+
+    await firebaseDb.ref('transactions').set(transactionsObj);
+    btn.textContent = '✅ 완료!';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 2000);
+
+    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
+    alert('✅ 완료!\n\n' + Object.keys(transactionsObj).length + '건의 거래가 Firebase에 업로드되었습니다.\n\nFirebase Console 확인:\nhttps://console.firebase.google.com/');
+  } catch (e) {
+    btn.textContent = '❌ 실패';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 2000);
+
+    console.error('⚠️ Firebase 업로드 실패:', e.message);
+    alert('❌ 업로드 실패\n\n' + e.message);
   }
 }
 
