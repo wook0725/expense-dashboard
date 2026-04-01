@@ -1000,8 +1000,14 @@ function showMonthlyDetail(monthLabel, filteredMonthly, monthIndex) {
       amountSpan.textContent = fmt(tx.amount) + '원';
       amountSpan.style.cssText = 'text-align:right; min-width:100px; color:#06b6d4';
 
+      const editBtn = document.createElement('button');
+      editBtn.textContent = '수정';
+      editBtn.style.cssText = 'background:#6366f1; color:white; border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:0.8rem; margin-left:8px';
+      editBtn.onclick = () => editTransactionCategory(tx.name, tx.cat);
+
       itemDiv.appendChild(leftDiv);
       itemDiv.appendChild(amountSpan);
+      itemDiv.appendChild(editBtn);
       itemsDiv.appendChild(itemDiv);
     });
 
@@ -1573,6 +1579,20 @@ function renderMerchantMapping() {
     `;
     tbody.appendChild(row);
   });
+}
+
+function editTransactionCategory(merchantName, currentCategory) {
+  const categories = ['기타', '음식/카페', '쇼핑', '택시/교통', '주거/유틸', '교육', '병원/의료', '뷰티/헬스', '입금'];
+
+  // 카테고리 선택 프롬프트
+  const newCategory = prompt(
+    `${merchantName}의 카테고리를 변경합니다\n\n가능한 카테고리:\n${categories.join(', ')}\n\n새 카테고리:`,
+    currentCategory
+  );
+
+  if (newCategory && categories.includes(newCategory) && newCategory !== currentCategory) {
+    applyMerchantCategory(merchantName, newCategory);
+  }
 }
 
 function applyMerchantCategory(merchantName, newCategory) {
