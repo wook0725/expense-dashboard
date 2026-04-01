@@ -357,9 +357,58 @@
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
   }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    body { padding: 16px; }
+    .page-header h1 { font-size: 1.5rem; }
+    .page-header p { font-size: 0.85rem; }
+    .nav-bar { gap: 8px; flex-wrap: wrap; }
+    .nav-btn { padding: 6px 12px; font-size: 0.8rem; }
+    .filter-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .chart-wrap { height: 220px !important; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card-title { font-size: 0.95rem; }
+    .amount { font-size: 0.9rem; }
+    #monthlyDetailContent { max-height: 300px !important; }
+    .filter-input-wrap input, .filter-input-wrap select { font-size: 14px; padding: 8px; }
+    table { font-size: 0.8rem; }
+    table td, table th { padding: 6px 4px; }
+  }
+
   @media (max-width: 500px) {
-    .kpi-grid { grid-template-columns: 1fr; }
     body { padding: 12px; }
+    .page-header h1 { font-size: 1.2rem; margin-bottom: 8px; }
+    .page-header { margin-bottom: 20px; }
+    .nav-bar { margin-bottom: 20px; }
+    .nav-btn { padding: 6px 10px; font-size: 0.75rem; }
+    .filter-panel { padding: 12px 16px; margin-bottom: 16px; }
+    .filter-grid { grid-template-columns: 1fr; gap: 8px; }
+    .chart-wrap { height: 180px !important; margin: 0 -16px; }
+    .kpi-grid { grid-template-columns: 1fr; gap: 10px; }
+    .kpi { padding: 12px; }
+    .kpi-label { font-size: 0.75rem; }
+    .kpi-value { font-size: 1.3rem; }
+    .card { padding: 12px; margin-bottom: 12px; }
+    .card-title { font-size: 0.9rem; margin-bottom: 12px; }
+    .monthly-detail-btn, button { padding: 6px 12px; font-size: 0.8rem; }
+    #monthlyDetailContent { max-height: 250px !important; font-size: 0.8rem; }
+    .badge { padding: 1px 6px; font-size: 0.65rem; }
+    .cat-legend { grid-template-columns: 1fr; }
+    table { font-size: 0.7rem; }
+    table td, table th { padding: 4px 2px; }
+    .filter-input-wrap input, .filter-input-wrap select { font-size: 13px; padding: 6px; }
+    .page-header { text-align: center; }
+  }
+
+  @media (max-width: 400px) {
+    body { padding: 8px; }
+    .page-header h1 { font-size: 1rem; }
+    .filter-grid { grid-template-columns: 1fr; }
+    .chart-wrap { height: 150px !important; }
+    .kpi-value { font-size: 1.1rem; }
+    .card { padding: 10px; }
+    #monthlyDetailContent { max-height: 200px !important; }
   }
 </style>
 </head>
