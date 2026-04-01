@@ -2002,9 +2002,10 @@ function updateTables(filteredDaily) {
 // ============================
 document.addEventListener('DOMContentLoaded', async () => {
   // Migrate old categories to new ones (only once)
-  if (!localStorage.getItem('categoriesMigrated')) {
+  if (!localStorage.getItem('categoriesMigrated_v2')) {
     migrateCategories();
-    localStorage.setItem('categoriesMigrated', 'true');
+    localStorage.setItem('categoriesMigrated_v2', 'true');
+    console.log('✅ 카테고리 마이그레이션 완료');
   }
 
   // Load saved category overrides from Firebase
