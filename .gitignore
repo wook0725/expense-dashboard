@@ -19,3 +19,15 @@ Thumbs.db
 # 로컬 테스트 파일
 *.local.html
 *.test.json
+
+# 불필요한 백업 및 데이터 파일
+*.xls
+*.xlsx
+*.docx
+index_backup.html
+dashboard.html
+HTML_*.md
+*계획서*
+
+# Claude 설정 (로컬용)
+.claude/
