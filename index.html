@@ -8,7 +8,7 @@
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDXr4Nxd9LRHgShhwjf9X7UUB-VX57to5Y",
@@ -26,6 +26,8 @@
   window.firebaseDb = db;
   window.firebaseRef = ref;
   window.firebaseGet = get;
+  window.firebaseSet = set;
+  window.firebaseUpdate = update;
 </script>
 <style>
   :root {
@@ -1448,7 +1450,7 @@ async function uploadTransactionsToFirebase() {
       };
     });
 
-    await firebaseDb.ref('transactions').set(transactionsObj);
+    await window.firebaseSet(window.firebaseRef(firebaseDb, 'transactions'), transactionsObj);
     localStorage.setItem('transactionsUploaded_v1', 'true');
     console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
   } catch (e) {
@@ -1464,7 +1466,7 @@ async function loadTransactionsFromFirebase() {
   }
 
   try {
-    const snapshot = await firebaseDb.ref('transactions').get();
+    const snapshot = await window.firebaseGet(window.firebaseRef(firebaseDb, 'transactions'));
     if (snapshot.exists()) {
       const dbTransactions = snapshot.val();
       // DB에서 로드한 데이터를 recentTransactions에 대입
@@ -1590,7 +1592,7 @@ function applyMerchantCategory(merchantName, newCategory) {
         updates[`transactions/${key}/category`] = newCategory;
       });
       try {
-        window.firebaseDb.ref().update(updates);
+        window.firebaseUpdate(window.firebaseRef(firebaseDb, '/'), updates);
       } catch(e) {
         console.warn('Firebase 업데이트 실패:', e);
       }
