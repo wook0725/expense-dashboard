@@ -1,0 +1,15 @@
+{
+  "name": "expense-dashboard-firebase-upload",
+  "version": "1.0.0",
+  "description": "Firebase에 지출내역 데이터를 직접 업로드하는 스크립트",
+  "main": "upload-to-firebase.js",
+  "scripts": {
+    "upload": "node upload-to-firebase.js"
+  },
+  "keywords": ["firebase", "expense", "dashboard"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}

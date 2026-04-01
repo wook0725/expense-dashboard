@@ -1,0 +1,21 @@
+# Firebase 서비스 계정 키 (보안)
+serviceAccountKey.json
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 로컬 테스트 파일
+*.local.html
+*.test.json
