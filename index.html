@@ -1584,15 +1584,69 @@ function renderMerchantMapping() {
 function editTransactionCategory(merchantName, currentCategory) {
   const categories = ['기타', '음식/카페', '쇼핑', '택시/교통', '주거/유틸', '교육', '병원/의료', '뷰티/헬스', '입금'];
 
-  // 카테고리 선택 프롬프트
-  const newCategory = prompt(
-    `${merchantName}의 카테고리를 변경합니다\n\n가능한 카테고리:\n${categories.join(', ')}\n\n새 카테고리:`,
-    currentCategory
-  );
+  // 모달 생성
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+    z-index: 10000;
+  `;
 
-  if (newCategory && categories.includes(newCategory) && newCategory !== currentCategory) {
-    applyMerchantCategory(merchantName, newCategory);
-  }
+  const modalContent = document.createElement('div');
+  modalContent.style.cssText = `
+    background: white; border-radius: 8px; padding: 20px;
+    min-width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  `;
+
+  const title = document.createElement('h3');
+  title.textContent = `${merchantName}의 카테고리 선택`;
+  title.style.cssText = 'margin: 0 0 15px 0; color: #333;';
+  modalContent.appendChild(title);
+
+  const btnContainer = document.createElement('div');
+  btnContainer.style.cssText = 'display: grid; grid-template-columns: 1fr 1fr; gap: 8px;';
+
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.textContent = cat;
+    btn.style.cssText = `
+      padding: 8px 12px; border: 2px solid #ddd; border-radius: 4px;
+      background: ${cat === currentCategory ? '#6366f1' : 'white'};
+      color: ${cat === currentCategory ? 'white' : '#333'};
+      cursor: pointer; font-weight: ${cat === currentCategory ? 'bold' : 'normal'};
+      transition: all 0.2s;
+    `;
+    btn.onmouseover = () => {
+      if (cat !== currentCategory) btn.style.borderColor = '#6366f1';
+    };
+    btn.onmouseout = () => {
+      if (cat !== currentCategory) btn.style.borderColor = '#ddd';
+    };
+    btn.onclick = () => {
+      if (cat !== currentCategory) {
+        document.body.removeChild(modal);
+        applyMerchantCategory(merchantName, cat);
+      } else {
+        document.body.removeChild(modal);
+      }
+    };
+    btnContainer.appendChild(btn);
+  });
+
+  modalContent.appendChild(btnContainer);
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = '취소';
+  cancelBtn.style.cssText = `
+    margin-top: 12px; width: 100%; padding: 8px;
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;
+    cursor: pointer; color: #666;
+  `;
+  cancelBtn.onclick = () => document.body.removeChild(modal);
+  modalContent.appendChild(cancelBtn);
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
 }
 
 function applyMerchantCategory(merchantName, newCategory) {
