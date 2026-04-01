@@ -1584,15 +1584,18 @@ function applyMerchantCategory(merchantName, newCategory) {
       }
     });
 
-    // Firebase에 업데이트
+    // Firebase에 업데이트 (선택한 상인의 거래만)
     if (window.firebaseDb && window.firebaseRef) {
       const updates = {};
       recentTransactions.forEach(tx => {
-        const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
-        updates[`transactions/${key}/category`] = newCategory;
+        if (tx.name === merchantName) {  // 선택한 상인만 필터링
+          const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
+          updates[`transactions/${key}/category`] = newCategory;
+        }
       });
       try {
         window.firebaseUpdate(window.firebaseRef(firebaseDb, '/'), updates);
+        console.log(`✅ ${merchantName}(${count}건) 카테고리가 Firebase에 저장됨`);
       } catch(e) {
         console.warn('Firebase 업데이트 실패:', e);
       }
