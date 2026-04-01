@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>지출내역 대시보드</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<!-- Firebase SDK (Compat Version) -->
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
 <style>
   :root {
     --bg: #0f172a;
@@ -293,7 +290,6 @@
   .badge-택시 { background: rgba(6,182,212,0.2); color: #67e8f9; }
   .badge-대중교통 { background: rgba(34,211,238,0.2); color: #7ee8fa; }
   .badge-차량유지 { background: rgba(8,145,178,0.2); color: #44d7e6; }
-  .badge-통신비 { background: rgba(249,115,22,0.2); color: #fed7aa; }
   .badge-교육 { background: rgba(245,158,11,0.2); color: #fcd34d; }
   .badge-카페간식 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
   .badge-식당배달 { background: rgba(244,114,182,0.2); color: #fbcfe8; }
@@ -420,7 +416,7 @@
 
 <!-- Navigation -->
 <div class="nav-bar">
-  <a href="index.html" class="nav-btn active">📊 대시보드</a>
+  <a href="지출내역_대시보드.html" class="nav-btn active">📊 대시보드</a>
   <a href="지출내역_특이사항.html" class="nav-btn">⚠️ 특이사항</a>
 </div>
 
@@ -446,7 +442,6 @@
       <label>&nbsp;</label>
       <div style="display:flex;gap:8px">
         <button class="filter-btn reset" onclick="resetFilter()" title="초기 날짜로 복원">↺ 초기화</button>
-        <button class="filter-btn" onclick="uploadAllTransactionsNow()" title="모든 거래를 Firebase에 업로드" style="background:#06b6d4;border-color:#06b6d4">☁️ DB업로드</button>
       </div>
     </div>
   </div>
@@ -528,7 +523,6 @@
         <option value="택시">택시</option>
         <option value="대중교통">대중교통</option>
         <option value="차량유지">차량유지</option>
-        <option value="통신비">통신비</option>
         <option value="교육">교육</option>
         <option value="카페/간식">카페/간식</option>
         <option value="식당/배달">식당/배달</option>
@@ -654,10 +648,10 @@ const monthlyData = {
 };
 
 const categoryData = {
-  labels: ['기타', '온라인쇼핑', '오프라인쇼핑', '택시', '대중교통', '차량유지', '통신비', '교육', '카페/간식', '식당/배달', '약국', '병원', '주거/유틸', '뷰티/헬스'],
-  amounts: [18952517, 1065088, 1065088, 671849, 671849, 0, 300000, 1135300, 220175, 220175, 0, 348200, 237410, 156000],
-  pcts:    [76.6, 4.3, 4.3, 2.7, 2.7, 0.0, 1.2, 4.6, 0.9, 0.9, 0.0, 1.4, 1.0, 0.6],
-  colors:  ['#6366f1', '#10b981', '#34d399', '#06b6d4', '#22d3ee', '#0891b2', '#f97316', '#f59e0b', '#ec4899', '#f472b6', '#84cc16', '#22c55e', '#8b5cf6', '#a78bfa']
+  labels: ['기타', '온라인쇼핑', '오프라인쇼핑', '택시', '대중교통', '차량유지', '교육', '카페/간식', '식당/배달', '약국', '병원', '주거/유틸', '뷰티/헬스'],
+  amounts: [18952517, 1065088, 1065088, 671849, 671849, 0, 1135300, 220175, 220175, 0, 348200, 237410, 156000],
+  pcts:    [76.6, 4.3, 4.3, 2.7, 2.7, 0.0, 4.6, 0.9, 0.9, 0.0, 1.4, 1.0, 0.6],
+  colors:  ['#6366f1', '#10b981', '#34d399', '#06b6d4', '#22d3ee', '#0891b2', '#f59e0b', '#ec4899', '#f472b6', '#84cc16', '#22c55e', '#8b5cf6', '#a78bfa']
 };
 
 const dowData = {
@@ -1149,7 +1143,7 @@ function getFilteredData() {
   // Update period text
   const startText = startDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
   const endText = endDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
-  document.getElementById('periodText').innerHTML =
+  document.getElementById('periodText').textContent =
     '분석 기간: ' + startText + ' ~ ' + endText + ' &nbsp;|&nbsp; 신한카드 · KB은행 · 신한은행';
 
   // Return filtered daily data for charts (aggregate by day)
@@ -1230,28 +1224,6 @@ function applyFilter() {
   updateTables(filteredDaily);
 }
 
-// ============================
-// Firebase Configuration
-// ============================
-const firebaseConfig = {
-  apiKey: "AIzaSyDXr4Nxd9LRHgShhwjf9X7UUB-VX57to5Y",
-  authDomain: "expense-dashboard-fec2d.firebaseapp.com",
-  databaseURL: "https://expense-dashboard-fec2d-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "expense-dashboard-fec2d",
-  storageBucket: "expense-dashboard-fec2d.firebasestorage.app",
-  messagingSenderId: "845479316735",
-  appId: "1:845479316735:web:40f0acc1ef6242159a90ca"
-};
-
-let firebaseApp, firebaseDb;
-try {
-  firebaseApp = firebase.initializeApp(firebaseConfig);
-  firebaseDb = firebase.database();
-  console.log('✅ Firebase 연결 완료');
-} catch (e) {
-  console.warn('⚠️ Firebase 연결 실패:', e.message);
-}
-
 // Monthly detail state
 let currentMonthData = null;
 let sortMode = 'date'; // 'date' or 'amount'
@@ -1275,8 +1247,6 @@ function migrateCategories() {
     else if (tx.cat === '택시/교통') {
       if (tx.name.includes('네이버파이낸셜') || tx.name.includes('타다')) {
         tx.cat = '택시';
-      } else if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
-        tx.cat = '통신비'; // 통신비로 분류
       } else {
         tx.cat = '대중교통'; // 기본값
       }
@@ -1285,155 +1255,27 @@ function migrateCategories() {
     else if (tx.cat === '병원/의료') {
       tx.cat = '병원';
     }
-    // 기타에서 통신비 분류
-    else if (tx.cat === '기타') {
-      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신') || tx.name.includes('LG U')) {
-        tx.cat = '통신비';
-      }
-    }
-    // 주거/유틸에서 통신비 분류
-    else if (tx.cat === '주거/유틸') {
-      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
-        tx.cat = '통신비';
-      }
-    }
   });
 }
 
-// Firebase 키 정규화 함수 (저장/로드 일관성 유지)
-// Firebase 키는 다음 문자를 포함할 수 없음: . # $ / [ ]
-function sanitizeFirebaseKey(key) {
-  return key.replace(/[.|#$\/\[\]]/g, '_');
-}
+// Load category overrides on startup
+function loadCategoryOverrides() {
+  categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
 
-// Firebase에 모든 지출내역 업로드 (최초 1회)
-async function uploadTransactionsToFirebase() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. 지출내역 업로드 스킵됨');
-    return;
-  }
-
-  if (localStorage.getItem('transactionsUploaded_v1')) {
-    console.log('✅ 지출내역이 이미 Firebase에 업로드됨');
-    return;
-  }
-
-  try {
-    const transactionsObj = {};
-    recentTransactions.forEach((tx, idx) => {
-      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      transactionsObj[key] = {
-        date: tx.date,
-        name: tx.name,
-        amount: tx.amount,
-        category: tx.cat,
-        account: tx.account
-      };
-    });
-
-    await firebaseDb.ref('transactions').set(transactionsObj);
-    localStorage.setItem('transactionsUploaded_v1', 'true');
-    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
-  } catch (e) {
-    console.warn('⚠️ Firebase 업로드 실패:', e.message);
-  }
-}
-
-// 사용자가 버튼으로 수동 업로드 (강제 업로드)
-async function uploadAllTransactionsNow() {
-  if (!firebaseDb) {
-    alert('❌ Firebase 연결 실패\n\n개발자 도구 → Console에서 오류 확인');
-    return;
-  }
-
-  const btn = event.target;
-  const originalText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = '⏳ 업로드 중...';
-
-  try {
-    const transactionsObj = {};
-    recentTransactions.forEach((tx, idx) => {
-      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      transactionsObj[key] = {
-        date: tx.date,
-        name: tx.name,
-        amount: tx.amount,
-        category: tx.cat,
-        account: tx.account,
-        uploadedAt: new Date().toISOString()
-      };
-    });
-
-    await firebaseDb.ref('transactions').set(transactionsObj);
-    btn.textContent = '✅ 완료!';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }, 2000);
-
-    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
-    alert('✅ 완료!\n\n' + Object.keys(transactionsObj).length + '건의 거래가 Firebase에 업로드되었습니다.\n\nFirebase Console 확인:\nhttps://console.firebase.google.com/');
-  } catch (e) {
-    btn.textContent = '❌ 실패';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }, 2000);
-
-    console.error('⚠️ Firebase 업로드 실패:', e.message);
-    alert('❌ 업로드 실패\n\n' + e.message);
-  }
-}
-
-// Load category overrides from Firebase
-async function loadCategoryOverrides() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. localStorage 사용합니다.');
-    categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
-  } else {
-    try {
-      const snapshot = await firebaseDb.ref('categories').get();
-      if (snapshot.exists()) {
-        categoryOverrides = snapshot.val();
-        console.log('✅ Firebase에서 카테고리 로드됨');
-      } else {
-        categoryOverrides = {};
-      }
-    } catch (e) {
-      console.warn('Firebase 로드 실패:', e.message);
-      categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
-    }
-  }
-
-  // Apply overrides to recentTransactions (키 정규화로 매칭)
-  Object.keys(categoryOverrides).forEach(fbKey => {
-    const txIndex = recentTransactions.findIndex(tx => {
-      const txKey = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      return txKey === fbKey;
-    });
+  // Apply overrides to recentTransactions
+  Object.keys(categoryOverrides).forEach(key => {
+    const txIndex = recentTransactions.findIndex(tx =>
+      `${tx.date}|${tx.name}|${tx.amount}` === key
+    );
     if (txIndex >= 0) {
-      recentTransactions[txIndex].cat = categoryOverrides[fbKey];
+      recentTransactions[txIndex].cat = categoryOverrides[key];
     }
   });
 }
 
-async function saveCategoryOverride(date, name, amount, newCategory) {
+function saveCategoryOverride(date, name, amount, newCategory) {
   const key = `${date}|${name}|${amount}`;
-  const sanitizedKey = sanitizeFirebaseKey(key);
-  categoryOverrides[sanitizedKey] = newCategory;
-
-  // Firebase에 저장 (정규화된 키 사용)
-  if (firebaseDb) {
-    try {
-      await firebaseDb.ref('categories/' + sanitizedKey).set(newCategory);
-      console.log('✅ Firebase에 저장됨:', key);
-    } catch (e) {
-      console.warn('Firebase 저장 실패:', e.message);
-    }
-  }
-
-  // localStorage에도 백업
+  categoryOverrides[key] = newCategory;
   localStorage.setItem('categoryOverrides', JSON.stringify(categoryOverrides));
 
   // Update the transaction
@@ -1443,82 +1285,6 @@ async function saveCategoryOverride(date, name, amount, newCategory) {
   if (txIndex >= 0) {
     recentTransactions[txIndex].cat = newCategory;
   }
-}
-
-// Firebase에서 거래 데이터 로드
-async function loadTransactionsFromFirebase() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. 하드코딩된 데이터 사용합니다.');
-    return false;
-  }
-
-  try {
-    const snapshot = await firebaseDb.ref('transactions').get();
-    if (snapshot.exists()) {
-      const dbTransactions = snapshot.val();
-      // DB에서 로드한 데이터를 recentTransactions에 대입
-      recentTransactions.length = 0; // 기존 데이터 제거
-
-      Object.values(dbTransactions).forEach(tx => {
-        recentTransactions.push({
-          date: tx.date,
-          name: tx.name,
-          amount: tx.amount,
-          cat: tx.category || '기타', // category → cat으로 매핑
-          account: tx.account
-        });
-      });
-
-      // 날짜순으로 정렬
-      recentTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      console.log('✅ Firebase에서 거래 로드됨:', recentTransactions.length + '건');
-      return true;
-    } else {
-      console.log('Firebase에 거래 데이터 없음');
-      return false;
-    }
-  } catch (e) {
-    console.warn('Firebase 로드 실패:', e.message);
-    return false;
-  }
-}
-
-// 새로운 거래 추가
-async function addNewTransaction(date, name, amount, category, account) {
-  const newTx = {
-    date: date,
-    name: name,
-    amount: amount,
-    cat: category,
-    account: account
-  };
-
-  // 1. 로컬 배열에 추가
-  recentTransactions.push(newTx);
-
-  // 2. Firebase에 저장
-  if (firebaseDb) {
-    try {
-      const key = sanitizeFirebaseKey(`${date}|${name}|${amount}`);
-      await firebaseDb.ref('transactions/' + key).set({
-        date: date,
-        name: name,
-        amount: amount,
-        category: category,
-        account: account,
-        addedAt: new Date().toISOString()
-      });
-      console.log('✅ Firebase에 새 거래 저장됨');
-    } catch (e) {
-      console.warn('Firebase 저장 실패:', e.message);
-    }
-  }
-
-  // 3. 차트 업데이트
-  applyFilter();
-
-  return true;
 }
 
 function openCategoryEditModal(tx) {
@@ -1535,13 +1301,11 @@ function closeCategoryEditModal() {
   editingTransaction = null;
 }
 
-async function saveCategoryEdit() {
+function saveCategoryEdit() {
   if (!editingTransaction) return;
 
   const newCategory = document.getElementById('categorySelect').value;
-
-  // Firebase 저장이 완료될 때까지 기다리기
-  await saveCategoryOverride(
+  saveCategoryOverride(
     editingTransaction.date,
     editingTransaction.name,
     editingTransaction.amount,
@@ -1553,11 +1317,10 @@ async function saveCategoryEdit() {
     renderMonthlyDetail(currentMonthData.transactions, currentMonthData.monthLabel);
   }
 
-  // Update charts (Firebase 저장 완료 후)
+  // Update charts
   applyFilter();
 
   closeCategoryEditModal();
-  console.log('✅ 카테고리 수정 및 차트 업데이트 완료');
 }
 
 function toggleSortMode(mode) {
@@ -2165,28 +1928,16 @@ function updateTables(filteredDaily) {
 // ============================
 // INITIALIZATION
 // ============================
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Migrate old categories to new ones (only once)
-  if (!localStorage.getItem('categoriesMigrated_v2')) {
+  if (!localStorage.getItem('categoriesMigrated')) {
     migrateCategories();
-    localStorage.setItem('categoriesMigrated_v2', 'true');
-    console.log('✅ 카테고리 마이그레이션 완료');
+    localStorage.setItem('categoriesMigrated', 'true');
   }
 
-  // 1. Upload all transactions to Firebase (최초 1회)
-  await uploadTransactionsToFirebase();
+  // Load saved category overrides
+  loadCategoryOverrides();
 
-  // 2. Firebase에서 거래 데이터 로드
-  const loadedFromDb = await loadTransactionsFromFirebase();
-
-  if (!loadedFromDb) {
-    console.log('📊 하드코딩된 데이터 사용 중');
-  }
-
-  // 3. Load saved category overrides from Firebase
-  await loadCategoryOverrides();
-
-  // 4. 차트 초기화
   const { filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring } = getFilteredData();
   initCharts(filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring);
   updateTables(filteredDaily);

@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>지출내역 대시보드</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<!-- Firebase SDK (Compat Version) -->
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
 <style>
   :root {
     --bg: #0f172a;
@@ -288,19 +285,13 @@
     font-weight: 500;
   }
   .badge-기타 { background: rgba(99,102,241,0.2); color: #a5b4fc; }
-  .badge-온라인쇼핑 { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-  .badge-오프라인쇼핑 { background: rgba(52,211,153,0.2); color: #5eead4; }
-  .badge-택시 { background: rgba(6,182,212,0.2); color: #67e8f9; }
-  .badge-대중교통 { background: rgba(34,211,238,0.2); color: #7ee8fa; }
-  .badge-차량유지 { background: rgba(8,145,178,0.2); color: #44d7e6; }
-  .badge-통신비 { background: rgba(249,115,22,0.2); color: #fed7aa; }
+  .badge-쇼핑 { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+  .badge-택시교통 { background: rgba(6,182,212,0.2); color: #67e8f9; }
   .badge-교육 { background: rgba(245,158,11,0.2); color: #fcd34d; }
-  .badge-카페간식 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
-  .badge-식당배달 { background: rgba(244,114,182,0.2); color: #fbcfe8; }
-  .badge-약국 { background: rgba(132,204,22,0.2); color: #bef264; }
-  .badge-병원 { background: rgba(34,197,94,0.2); color: #86efac; }
-  .badge-주거유틸 { background: rgba(139,92,246,0.2); color: #d8b4fe; }
-  .badge-뷰티헬스 { background: rgba(167,139,250,0.2); color: #ddd6fe; }
+  .badge-음식카페 { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .badge-병원의료 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
+  .badge-주거유틸 { background: rgba(132,204,22,0.2); color: #bef264; }
+  .badge-뷰티헬스 { background: rgba(139,92,246,0.2); color: #c4b5fd; }
   .amount { font-weight: 600; color: #f87171; }
 
   .account-badge {
@@ -361,58 +352,9 @@
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
   }
-
-  /* Mobile Optimization */
-  @media (max-width: 768px) {
-    body { padding: 16px; }
-    .page-header h1 { font-size: 1.5rem; }
-    .page-header p { font-size: 0.85rem; }
-    .nav-bar { gap: 8px; flex-wrap: wrap; }
-    .nav-btn { padding: 6px 12px; font-size: 0.8rem; }
-    .filter-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .chart-wrap { height: 220px !important; }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .card-title { font-size: 0.95rem; }
-    .amount { font-size: 0.9rem; }
-    #monthlyDetailContent { max-height: 300px !important; }
-    .filter-input-wrap input, .filter-input-wrap select { font-size: 14px; padding: 8px; }
-    table { font-size: 0.8rem; }
-    table td, table th { padding: 6px 4px; }
-  }
-
   @media (max-width: 500px) {
+    .kpi-grid { grid-template-columns: 1fr; }
     body { padding: 12px; }
-    .page-header h1 { font-size: 1.2rem; margin-bottom: 8px; }
-    .page-header { margin-bottom: 20px; }
-    .nav-bar { margin-bottom: 20px; }
-    .nav-btn { padding: 6px 10px; font-size: 0.75rem; }
-    .filter-panel { padding: 12px 16px; margin-bottom: 16px; }
-    .filter-grid { grid-template-columns: 1fr; gap: 8px; }
-    .chart-wrap { height: 180px !important; margin: 0 -16px; }
-    .kpi-grid { grid-template-columns: 1fr; gap: 10px; }
-    .kpi { padding: 12px; }
-    .kpi-label { font-size: 0.75rem; }
-    .kpi-value { font-size: 1.3rem; }
-    .card { padding: 12px; margin-bottom: 12px; }
-    .card-title { font-size: 0.9rem; margin-bottom: 12px; }
-    .monthly-detail-btn, button { padding: 6px 12px; font-size: 0.8rem; }
-    #monthlyDetailContent { max-height: 250px !important; font-size: 0.8rem; }
-    .badge { padding: 1px 6px; font-size: 0.65rem; }
-    .cat-legend { grid-template-columns: 1fr; }
-    table { font-size: 0.7rem; }
-    table td, table th { padding: 4px 2px; }
-    .filter-input-wrap input, .filter-input-wrap select { font-size: 13px; padding: 6px; }
-    .page-header { text-align: center; }
-  }
-
-  @media (max-width: 400px) {
-    body { padding: 8px; }
-    .page-header h1 { font-size: 1rem; }
-    .filter-grid { grid-template-columns: 1fr; }
-    .chart-wrap { height: 150px !important; }
-    .kpi-value { font-size: 1.1rem; }
-    .card { padding: 10px; }
-    #monthlyDetailContent { max-height: 200px !important; }
   }
 </style>
 </head>
@@ -420,7 +362,7 @@
 
 <!-- Navigation -->
 <div class="nav-bar">
-  <a href="index.html" class="nav-btn active">📊 대시보드</a>
+  <a href="지출내역_대시보드.html" class="nav-btn active">📊 대시보드</a>
   <a href="지출내역_특이사항.html" class="nav-btn">⚠️ 특이사항</a>
 </div>
 
@@ -446,7 +388,6 @@
       <label>&nbsp;</label>
       <div style="display:flex;gap:8px">
         <button class="filter-btn reset" onclick="resetFilter()" title="초기 날짜로 복원">↺ 초기화</button>
-        <button class="filter-btn" onclick="uploadAllTransactionsNow()" title="모든 거래를 Firebase에 업로드" style="background:#06b6d4;border-color:#06b6d4">☁️ DB업로드</button>
       </div>
     </div>
   </div>
@@ -493,57 +434,9 @@
 <div id="monthlyDetailSection" class="card" style="display:none; margin-top:0">
   <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
     <span id="monthlyDetailTitle"></span>
-    <div style="display:flex; gap:8px; align-items:center;">
-      <div style="display:flex; background:#1e293b; border:1px solid #334155; border-radius:6px; padding:2px;">
-        <button id="sortByDateBtn" onclick="toggleSortMode('date')" style="padding:6px 12px; border:none; background:#334155; color:#e2e8f0; cursor:pointer; border-radius:4px 0 0 4px; font-size:0.85rem;">날짜순</button>
-        <button id="sortByAmountBtn" onclick="toggleSortMode('amount')" style="padding:6px 12px; border:none; background:transparent; color:#94a3b8; cursor:pointer; border-radius:0 4px 4px 0; font-size:0.85rem;">금액순</button>
-      </div>
-      <button onclick="closeMonthlyDetail()" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.2rem; padding:0">×</button>
-    </div>
+    <button onclick="closeMonthlyDetail()" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.2rem; padding:0">×</button>
   </div>
   <div id="monthlyDetailContent" style="overflow-y:auto; max-height:400px"></div>
-</div>
-
-<!-- Category Edit Modal -->
-<div id="categoryEditModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'categoryEditModal') closeCategoryEditModal();">
-  <div style="background:#1e293b; border:1px solid #334155; border-radius:12px; padding:24px; max-width:400px; width:90%; box-shadow:0 20px 25px -5px rgba(0,0,0,0.3);">
-    <div style="font-size:1.1rem; font-weight:600; margin-bottom:16px; color:#e2e8f0;">카테고리 수정</div>
-
-    <div style="margin-bottom:16px;">
-      <div style="font-size:0.9rem; color:#cbd5e1; margin-bottom:8px;">
-        <span style="font-weight:600;" id="editTxName"></span>
-        <span style="color:#94a3b8;" id="editTxDate"></span>
-      </div>
-      <div style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">
-        현재 금액: <span style="color:#10b981; font-weight:600;" id="editTxAmount"></span>
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <label style="font-size:0.85rem; color:#94a3b8; display:block; margin-bottom:8px;">새 카테고리 선택</label>
-      <select id="categorySelect" style="width:100%; padding:10px; background:#0f172a; border:1px solid #334155; border-radius:6px; color:#e2e8f0; font-size:0.9rem; cursor:pointer;">
-        <option value="기타">기타</option>
-        <option value="온라인쇼핑">온라인쇼핑</option>
-        <option value="오프라인쇼핑">오프라인쇼핑</option>
-        <option value="택시">택시</option>
-        <option value="대중교통">대중교통</option>
-        <option value="차량유지">차량유지</option>
-        <option value="통신비">통신비</option>
-        <option value="교육">교육</option>
-        <option value="카페/간식">카페/간식</option>
-        <option value="식당/배달">식당/배달</option>
-        <option value="약국">약국</option>
-        <option value="병원">병원</option>
-        <option value="주거/유틸">주거/유틸</option>
-        <option value="뷰티/헬스">뷰티/헬스</option>
-      </select>
-    </div>
-
-    <div style="display:flex; gap:10px; justify-content:flex-end;">
-      <button onclick="closeCategoryEditModal()" style="padding:8px 16px; background:#334155; border:1px solid #334155; border-radius:6px; color:#e2e8f0; cursor:pointer; font-size:0.9rem;">취소</button>
-      <button onclick="saveCategoryEdit()" style="padding:8px 16px; background:#6366f1; border:1px solid #6366f1; border-radius:6px; color:#fff; cursor:pointer; font-size:0.9rem; font-weight:600;">저장</button>
-    </div>
-  </div>
 </div>
 
 <!-- Category Analysis -->
@@ -654,10 +547,10 @@ const monthlyData = {
 };
 
 const categoryData = {
-  labels: ['기타', '온라인쇼핑', '오프라인쇼핑', '택시', '대중교통', '차량유지', '통신비', '교육', '카페/간식', '식당/배달', '약국', '병원', '주거/유틸', '뷰티/헬스'],
-  amounts: [18952517, 1065088, 1065088, 671849, 671849, 0, 300000, 1135300, 220175, 220175, 0, 348200, 237410, 156000],
-  pcts:    [76.6, 4.3, 4.3, 2.7, 2.7, 0.0, 1.2, 4.6, 0.9, 0.9, 0.0, 1.4, 1.0, 0.6],
-  colors:  ['#6366f1', '#10b981', '#34d399', '#06b6d4', '#22d3ee', '#0891b2', '#f97316', '#f59e0b', '#ec4899', '#f472b6', '#84cc16', '#22c55e', '#8b5cf6', '#a78bfa']
+  labels: ['기타', '쇼핑', '택시/교통', '교육', '음식/카페', '병원/의료', '주거/유틸', '뷰티/헬스'],
+  amounts: [18952517, 2130176, 1343698, 1135300, 440350, 348200, 237410, 156000],
+  pcts:    [76.6,     8.6,     5.4,      4.6,     1.8,    1.4,    1.0,    0.6],
+  colors:  ['#6366f1','#10b981','#06b6d4','#f59e0b','#ef4444','#ec4899','#84cc16','#8b5cf6']
 };
 
 const dowData = {
@@ -1149,7 +1042,7 @@ function getFilteredData() {
   // Update period text
   const startText = startDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
   const endText = endDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
-  document.getElementById('periodText').innerHTML =
+  document.getElementById('periodText').textContent =
     '분석 기간: ' + startText + ' ~ ' + endText + ' &nbsp;|&nbsp; 신한카드 · KB은행 · 신한은행';
 
   // Return filtered daily data for charts (aggregate by day)
@@ -1230,484 +1123,6 @@ function applyFilter() {
   updateTables(filteredDaily);
 }
 
-// ============================
-// Firebase Configuration
-// ============================
-const firebaseConfig = {
-  apiKey: "AIzaSyDXr4Nxd9LRHgShhwjf9X7UUB-VX57to5Y",
-  authDomain: "expense-dashboard-fec2d.firebaseapp.com",
-  databaseURL: "https://expense-dashboard-fec2d-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "expense-dashboard-fec2d",
-  storageBucket: "expense-dashboard-fec2d.firebasestorage.app",
-  messagingSenderId: "845479316735",
-  appId: "1:845479316735:web:40f0acc1ef6242159a90ca"
-};
-
-let firebaseApp, firebaseDb;
-try {
-  firebaseApp = firebase.initializeApp(firebaseConfig);
-  firebaseDb = firebase.database();
-  console.log('✅ Firebase 연결 완료');
-} catch (e) {
-  console.warn('⚠️ Firebase 연결 실패:', e.message);
-}
-
-// Monthly detail state
-let currentMonthData = null;
-let sortMode = 'date'; // 'date' or 'amount'
-
-// Category customization
-let categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
-let editingTransaction = null;
-
-// Migrate old categories to new ones
-function migrateCategories() {
-  recentTransactions.forEach(tx => {
-    // 쇼핑 → 오프라인쇼핑 (기본으로 오프라인 취급)
-    if (tx.cat === '쇼핑') {
-      tx.cat = '오프라인쇼핑';
-    }
-    // 음식/카페 → 카페/간식 (기본으로 카페 취급)
-    else if (tx.cat === '음식/카페') {
-      tx.cat = '카페/간식';
-    }
-    // 택시/교통 분류
-    else if (tx.cat === '택시/교통') {
-      if (tx.name.includes('네이버파이낸셜') || tx.name.includes('타다')) {
-        tx.cat = '택시';
-      } else if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
-        tx.cat = '통신비'; // 통신비로 분류
-      } else {
-        tx.cat = '대중교통'; // 기본값
-      }
-    }
-    // 병원/의료 → 병원
-    else if (tx.cat === '병원/의료') {
-      tx.cat = '병원';
-    }
-    // 기타에서 통신비 분류
-    else if (tx.cat === '기타') {
-      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신') || tx.name.includes('LG U')) {
-        tx.cat = '통신비';
-      }
-    }
-    // 주거/유틸에서 통신비 분류
-    else if (tx.cat === '주거/유틸') {
-      if (tx.name.includes('텔레콤') || tx.name.includes('KT') || tx.name.includes('통신')) {
-        tx.cat = '통신비';
-      }
-    }
-  });
-}
-
-// Firebase 키 정규화 함수 (저장/로드 일관성 유지)
-// Firebase 키는 다음 문자를 포함할 수 없음: . # $ / [ ]
-function sanitizeFirebaseKey(key) {
-  return key.replace(/[.|#$\/\[\]]/g, '_');
-}
-
-// Firebase에 모든 지출내역 업로드 (최초 1회)
-async function uploadTransactionsToFirebase() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. 지출내역 업로드 스킵됨');
-    return;
-  }
-
-  if (localStorage.getItem('transactionsUploaded_v1')) {
-    console.log('✅ 지출내역이 이미 Firebase에 업로드됨');
-    return;
-  }
-
-  try {
-    const transactionsObj = {};
-    recentTransactions.forEach((tx, idx) => {
-      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      transactionsObj[key] = {
-        date: tx.date,
-        name: tx.name,
-        amount: tx.amount,
-        category: tx.cat,
-        account: tx.account
-      };
-    });
-
-    await firebaseDb.ref('transactions').set(transactionsObj);
-    localStorage.setItem('transactionsUploaded_v1', 'true');
-    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
-  } catch (e) {
-    console.warn('⚠️ Firebase 업로드 실패:', e.message);
-  }
-}
-
-// 사용자가 버튼으로 수동 업로드 (강제 업로드)
-async function uploadAllTransactionsNow() {
-  if (!firebaseDb) {
-    alert('❌ Firebase 연결 실패\n\n개발자 도구 → Console에서 오류 확인');
-    return;
-  }
-
-  const btn = event.target;
-  const originalText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = '⏳ 업로드 중...';
-
-  try {
-    const transactionsObj = {};
-    recentTransactions.forEach((tx, idx) => {
-      const key = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      transactionsObj[key] = {
-        date: tx.date,
-        name: tx.name,
-        amount: tx.amount,
-        category: tx.cat,
-        account: tx.account,
-        uploadedAt: new Date().toISOString()
-      };
-    });
-
-    await firebaseDb.ref('transactions').set(transactionsObj);
-    btn.textContent = '✅ 완료!';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }, 2000);
-
-    console.log('✅ 모든 지출내역(' + Object.keys(transactionsObj).length + '건)이 Firebase에 업로드됨');
-    alert('✅ 완료!\n\n' + Object.keys(transactionsObj).length + '건의 거래가 Firebase에 업로드되었습니다.\n\nFirebase Console 확인:\nhttps://console.firebase.google.com/');
-  } catch (e) {
-    btn.textContent = '❌ 실패';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }, 2000);
-
-    console.error('⚠️ Firebase 업로드 실패:', e.message);
-    alert('❌ 업로드 실패\n\n' + e.message);
-  }
-}
-
-// Load category overrides from Firebase
-async function loadCategoryOverrides() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. localStorage 사용합니다.');
-    categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
-  } else {
-    try {
-      const snapshot = await firebaseDb.ref('categories').get();
-      if (snapshot.exists()) {
-        categoryOverrides = snapshot.val();
-        console.log('✅ Firebase에서 카테고리 로드됨');
-      } else {
-        categoryOverrides = {};
-      }
-    } catch (e) {
-      console.warn('Firebase 로드 실패:', e.message);
-      categoryOverrides = JSON.parse(localStorage.getItem('categoryOverrides') || '{}');
-    }
-  }
-
-  // Apply overrides to recentTransactions (키 정규화로 매칭)
-  Object.keys(categoryOverrides).forEach(fbKey => {
-    const txIndex = recentTransactions.findIndex(tx => {
-      const txKey = sanitizeFirebaseKey(`${tx.date}|${tx.name}|${tx.amount}`);
-      return txKey === fbKey;
-    });
-    if (txIndex >= 0) {
-      recentTransactions[txIndex].cat = categoryOverrides[fbKey];
-    }
-  });
-}
-
-async function saveCategoryOverride(date, name, amount, newCategory) {
-  const key = `${date}|${name}|${amount}`;
-  const sanitizedKey = sanitizeFirebaseKey(key);
-  categoryOverrides[sanitizedKey] = newCategory;
-
-  // Firebase에 저장 (정규화된 키 사용)
-  if (firebaseDb) {
-    try {
-      await firebaseDb.ref('categories/' + sanitizedKey).set(newCategory);
-      console.log('✅ Firebase에 저장됨:', key);
-    } catch (e) {
-      console.warn('Firebase 저장 실패:', e.message);
-    }
-  }
-
-  // localStorage에도 백업
-  localStorage.setItem('categoryOverrides', JSON.stringify(categoryOverrides));
-
-  // Update the transaction
-  const txIndex = recentTransactions.findIndex(tx =>
-    tx.date === date && tx.name === name && tx.amount === amount
-  );
-  if (txIndex >= 0) {
-    recentTransactions[txIndex].cat = newCategory;
-  }
-}
-
-// Firebase에서 거래 데이터 로드
-async function loadTransactionsFromFirebase() {
-  if (!firebaseDb) {
-    console.warn('Firebase 연결 없음. 하드코딩된 데이터 사용합니다.');
-    return false;
-  }
-
-  try {
-    const snapshot = await firebaseDb.ref('transactions').get();
-    if (snapshot.exists()) {
-      const dbTransactions = snapshot.val();
-      // DB에서 로드한 데이터를 recentTransactions에 대입
-      recentTransactions.length = 0; // 기존 데이터 제거
-
-      Object.values(dbTransactions).forEach(tx => {
-        recentTransactions.push({
-          date: tx.date,
-          name: tx.name,
-          amount: tx.amount,
-          cat: tx.category || '기타', // category → cat으로 매핑
-          account: tx.account
-        });
-      });
-
-      // 날짜순으로 정렬
-      recentTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      console.log('✅ Firebase에서 거래 로드됨:', recentTransactions.length + '건');
-      return true;
-    } else {
-      console.log('Firebase에 거래 데이터 없음');
-      return false;
-    }
-  } catch (e) {
-    console.warn('Firebase 로드 실패:', e.message);
-    return false;
-  }
-}
-
-// 새로운 거래 추가
-async function addNewTransaction(date, name, amount, category, account) {
-  const newTx = {
-    date: date,
-    name: name,
-    amount: amount,
-    cat: category,
-    account: account
-  };
-
-  // 1. 로컬 배열에 추가
-  recentTransactions.push(newTx);
-
-  // 2. Firebase에 저장
-  if (firebaseDb) {
-    try {
-      const key = sanitizeFirebaseKey(`${date}|${name}|${amount}`);
-      await firebaseDb.ref('transactions/' + key).set({
-        date: date,
-        name: name,
-        amount: amount,
-        category: category,
-        account: account,
-        addedAt: new Date().toISOString()
-      });
-      console.log('✅ Firebase에 새 거래 저장됨');
-    } catch (e) {
-      console.warn('Firebase 저장 실패:', e.message);
-    }
-  }
-
-  // 3. 차트 업데이트
-  applyFilter();
-
-  return true;
-}
-
-function openCategoryEditModal(tx) {
-  editingTransaction = tx;
-  document.getElementById('editTxName').textContent = tx.name;
-  document.getElementById('editTxDate').textContent = tx.date;
-  document.getElementById('editTxAmount').textContent = fmt(tx.amount) + '원';
-  document.getElementById('categorySelect').value = tx.cat;
-  document.getElementById('categoryEditModal').style.display = 'flex';
-}
-
-function closeCategoryEditModal() {
-  document.getElementById('categoryEditModal').style.display = 'none';
-  editingTransaction = null;
-}
-
-async function saveCategoryEdit() {
-  if (!editingTransaction) return;
-
-  const newCategory = document.getElementById('categorySelect').value;
-
-  // Firebase 저장이 완료될 때까지 기다리기
-  await saveCategoryOverride(
-    editingTransaction.date,
-    editingTransaction.name,
-    editingTransaction.amount,
-    newCategory
-  );
-
-  // Re-render current month detail
-  if (currentMonthData) {
-    renderMonthlyDetail(currentMonthData.transactions, currentMonthData.monthLabel);
-  }
-
-  // Update charts (Firebase 저장 완료 후)
-  applyFilter();
-
-  closeCategoryEditModal();
-  console.log('✅ 카테고리 수정 및 차트 업데이트 완료');
-}
-
-function toggleSortMode(mode) {
-  sortMode = mode;
-  // Update button styles
-  const dateBtn = document.getElementById('sortByDateBtn');
-  const amountBtn = document.getElementById('sortByAmountBtn');
-
-  if (mode === 'date') {
-    dateBtn.style.background = '#334155';
-    dateBtn.style.color = '#e2e8f0';
-    amountBtn.style.background = 'transparent';
-    amountBtn.style.color = '#94a3b8';
-  } else {
-    dateBtn.style.background = 'transparent';
-    dateBtn.style.color = '#94a3b8';
-    amountBtn.style.background = '#334155';
-    amountBtn.style.color = '#e2e8f0';
-  }
-
-  // Re-render with new sort mode
-  if (currentMonthData) {
-    renderMonthlyDetail(currentMonthData.transactions, currentMonthData.monthLabel);
-  }
-}
-
-function renderMonthlyDetail(monthTransactions, monthLabel) {
-  const detailContent = document.getElementById('monthlyDetailContent');
-  detailContent.innerHTML = '';
-
-  let groupedData;
-
-  if (sortMode === 'date') {
-    // Group by date
-    const dayGroups = {};
-    monthTransactions.forEach(tx => {
-      if (!dayGroups[tx.date]) {
-        dayGroups[tx.date] = [];
-      }
-      dayGroups[tx.date].push(tx);
-    });
-
-    groupedData = Object.keys(dayGroups)
-      .sort()
-      .reverse()
-      .map(date => ({
-        groupLabel: date,
-        items: dayGroups[date]
-      }));
-  } else {
-    // Sort by amount (descending)
-    const sortedTx = [...monthTransactions].sort((a, b) => b.amount - a.amount);
-    groupedData = [{
-      groupLabel: null,
-      items: sortedTx
-    }];
-  }
-
-  groupedData.forEach(group => {
-    if (group.groupLabel) {
-      // Date header for date mode
-      const dayTotal = group.items.reduce((sum, tx) => sum + tx.amount, 0);
-      const dayDiv = document.createElement('div');
-      dayDiv.style.cssText = 'border-bottom:1px solid #334155; padding:12px 0; margin:8px 0';
-
-      const dayHeader = document.createElement('div');
-      dayHeader.style.cssText = 'font-weight:600; color:#e2e8f0; margin-bottom:8px; display:flex; justify-content:space-between';
-      dayHeader.innerHTML = `<span>${group.groupLabel}</span><span style="color:#10b981">${fmt(dayTotal)}원</span>`;
-      dayDiv.appendChild(dayHeader);
-
-      const itemsDiv = document.createElement('div');
-      itemsDiv.style.cssText = 'margin-left:12px';
-
-      group.items.forEach(tx => renderTransactionItem(tx, itemsDiv));
-      dayDiv.appendChild(itemsDiv);
-      detailContent.appendChild(dayDiv);
-    } else {
-      // Direct items for amount mode
-      group.items.forEach(tx => {
-        const itemDiv = document.createElement('div');
-        itemDiv.style.cssText = 'border-bottom:1px solid #334155; padding:8px 0; margin:4px 0';
-        renderTransactionItem(tx, itemDiv);
-        detailContent.appendChild(itemDiv);
-      });
-    }
-  });
-}
-
-function renderTransactionItem(tx, container) {
-  const catKey = tx.cat.replace('/','');
-  const isCard = tx.account.includes('카드');
-  const itemDiv = document.createElement('div');
-  itemDiv.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:0.9rem; color:#cbd5e1; gap:8px';
-
-  const leftDiv = document.createElement('div');
-  leftDiv.style.cssText = 'flex:1; display:flex; gap:8px; align-items:center';
-
-  const nameSpan = document.createElement('span');
-  nameSpan.textContent = tx.name;
-  nameSpan.style.cssText = 'min-width:80px';
-
-  const catBadge = document.createElement('span');
-  catBadge.className = `badge badge-${catKey}`;
-  catBadge.textContent = tx.cat;
-  catBadge.style.cssText = 'cursor:pointer; position:relative;';
-  catBadge.title = '클릭하여 카테고리 수정';
-  catBadge.onclick = (e) => {
-    e.stopPropagation();
-    openCategoryEditModal(tx);
-  };
-
-  const accountSpan = document.createElement('span');
-  accountSpan.style.cssText = 'font-size:0.8rem; color:#94a3b8';
-  accountSpan.textContent = isCard ? '💳' : '🏦';
-
-  leftDiv.appendChild(nameSpan);
-  leftDiv.appendChild(catBadge);
-  leftDiv.appendChild(accountSpan);
-
-  const rightDiv = document.createElement('div');
-  rightDiv.style.cssText = 'display:flex; align-items:center; gap:8px; white-space:nowrap';
-
-  const amountSpan = document.createElement('span');
-  amountSpan.style.cssText = 'text-align:right; font-weight:600; color:#10b981; min-width:80px';
-  amountSpan.textContent = fmt(tx.amount) + '원';
-
-  const editBtn = document.createElement('button');
-  editBtn.textContent = '수정';
-  editBtn.style.cssText = 'background:transparent; border:1px solid #334155; color:#94a3b8; padding:3px 8px; border-radius:4px; cursor:pointer; font-size:0.75rem; transition:all 0.2s;';
-  editBtn.onmouseover = () => {
-    editBtn.style.background = '#334155';
-    editBtn.style.color = '#e2e8f0';
-  };
-  editBtn.onmouseout = () => {
-    editBtn.style.background = 'transparent';
-    editBtn.style.color = '#94a3b8';
-  };
-  editBtn.onclick = (e) => {
-    e.stopPropagation();
-    openCategoryEditModal(tx);
-  };
-
-  rightDiv.appendChild(amountSpan);
-  rightDiv.appendChild(editBtn);
-
-  itemDiv.appendChild(leftDiv);
-  itemDiv.appendChild(rightDiv);
-  container.appendChild(itemDiv);
-}
-
 function resetFilter() {
   document.getElementById('startDate').value = '2025-09-30';
   document.getElementById('endDate').value = '2026-03-28';
@@ -1734,23 +1149,74 @@ function showMonthlyDetail(monthLabel, filteredMonthly, monthIndex) {
     return txMonth === monthStr && inDateRange && !isExcluded;
   }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Store current month data for re-rendering
-  currentMonthData = { transactions: monthTransactions, monthLabel };
-
-  // Reset sort mode to date
-  sortMode = 'date';
-  document.getElementById('sortByDateBtn').style.background = '#334155';
-  document.getElementById('sortByDateBtn').style.color = '#e2e8f0';
-  document.getElementById('sortByAmountBtn').style.background = 'transparent';
-  document.getElementById('sortByAmountBtn').style.color = '#94a3b8';
+  // Group by date
+  const dayGroups = {};
+  monthTransactions.forEach(tx => {
+    if (!dayGroups[tx.date]) {
+      dayGroups[tx.date] = [];
+    }
+    dayGroups[tx.date].push(tx);
+  });
 
   // Create detail HTML
   const detailTitle = document.getElementById('monthlyDetailTitle');
-  const totalAmount = monthTransactions.reduce((sum, tx) => sum + tx.amount, 0);
-  detailTitle.innerHTML = `<span class="dot" style="background:#6366f1"></span>${monthLabel}년 월 상세 내역 (총 ${fmt(totalAmount)}원)`;
+  detailTitle.innerHTML = `<span class="dot" style="background:#6366f1"></span>${monthLabel}년 월 상세 내역 (총 ${monthTransactions.reduce((sum, tx) => sum + tx.amount, 0).toLocaleString()}원)`;
 
-  // Render with current sort mode
-  renderMonthlyDetail(monthTransactions, monthLabel);
+  const detailContent = document.getElementById('monthlyDetailContent');
+  detailContent.innerHTML = '';
+
+  // Sort dates
+  const sortedDates = Object.keys(dayGroups).sort().reverse();
+
+  sortedDates.forEach(date => {
+    const dayTotal = dayGroups[date].reduce((sum, tx) => sum + tx.amount, 0);
+    const dayDiv = document.createElement('div');
+    dayDiv.style.cssText = 'border-bottom:1px solid #334155; padding:12px 0; margin:8px 0';
+
+    const dayHeader = document.createElement('div');
+    dayHeader.style.cssText = 'font-weight:600; color:#e2e8f0; margin-bottom:8px; display:flex; justify-content:space-between';
+    dayHeader.innerHTML = `<span>${date}</span><span style="color:#10b981">${fmt(dayTotal)}원</span>`;
+    dayDiv.appendChild(dayHeader);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.style.cssText = 'margin-left:12px';
+
+    dayGroups[date].forEach(tx => {
+      const catKey = tx.cat.replace('/','');
+      const isCard = tx.account.includes('카드');
+      const itemDiv = document.createElement('div');
+      itemDiv.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:0.9rem; color:#cbd5e1';
+
+      const leftDiv = document.createElement('div');
+      leftDiv.style.cssText = 'flex:1; display:flex; gap:8px; align-items:center';
+
+      const nameSpan = document.createElement('span');
+      nameSpan.textContent = tx.name;
+
+      const catBadge = document.createElement('span');
+      catBadge.className = `badge badge-${catKey}`;
+      catBadge.textContent = tx.cat;
+
+      const accountSpan = document.createElement('span');
+      accountSpan.style.cssText = 'font-size:0.8rem; color:#94a3b8';
+      accountSpan.textContent = isCard ? '💳' : '🏦';
+
+      leftDiv.appendChild(nameSpan);
+      leftDiv.appendChild(catBadge);
+      leftDiv.appendChild(accountSpan);
+
+      const amountSpan = document.createElement('span');
+      amountSpan.textContent = fmt(tx.amount) + '원';
+      amountSpan.style.cssText = 'text-align:right; min-width:100px; color:#06b6d4';
+
+      itemDiv.appendChild(leftDiv);
+      itemDiv.appendChild(amountSpan);
+      itemsDiv.appendChild(itemDiv);
+    });
+
+    dayDiv.appendChild(itemsDiv);
+    detailContent.appendChild(dayDiv);
+  });
 
   // Show section
   document.getElementById('monthlyDetailSection').style.display = 'block';
@@ -2165,28 +1631,7 @@ function updateTables(filteredDaily) {
 // ============================
 // INITIALIZATION
 // ============================
-document.addEventListener('DOMContentLoaded', async () => {
-  // Migrate old categories to new ones (only once)
-  if (!localStorage.getItem('categoriesMigrated_v2')) {
-    migrateCategories();
-    localStorage.setItem('categoriesMigrated_v2', 'true');
-    console.log('✅ 카테고리 마이그레이션 완료');
-  }
-
-  // 1. Upload all transactions to Firebase (최초 1회)
-  await uploadTransactionsToFirebase();
-
-  // 2. Firebase에서 거래 데이터 로드
-  const loadedFromDb = await loadTransactionsFromFirebase();
-
-  if (!loadedFromDb) {
-    console.log('📊 하드코딩된 데이터 사용 중');
-  }
-
-  // 3. Load saved category overrides from Firebase
-  await loadCategoryOverrides();
-
-  // 4. 차트 초기화
+document.addEventListener('DOMContentLoaded', () => {
   const { filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring } = getFilteredData();
   initCharts(filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring);
   updateTables(filteredDaily);
