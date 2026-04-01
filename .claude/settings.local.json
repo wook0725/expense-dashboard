@@ -7,7 +7,9 @@
       "Read(//tmp/**)",
       "Bash(ls -la \"C:\\\\Users\\\\wook0\\\\Documents\\\\AI\\\\지출내역\"/*.xlsx)",
       "Bash(start index.html)",
-      "Bash(powershell -Command \"& {Start-Process ''C:\\\\Users\\\\wook0\\\\Documents\\\\AI\\\\지출내역\\\\index.html''}\")"
+      "Bash(powershell -Command \"& {Start-Process ''C:\\\\Users\\\\wook0\\\\Documents\\\\AI\\\\지출내역\\\\index.html''}\")",
+      "Bash(gh repo:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
