@@ -309,13 +309,19 @@
     font-weight: 500;
   }
   .badge-기타 { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+  .badge-음식 { background: rgba(239,68,68,0.2); color: #fca5a5; }
   .badge-쇼핑 { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-  .badge-택시교통 { background: rgba(6,182,212,0.2); color: #67e8f9; }
+  .badge-교통대중교통 { background: rgba(6,182,212,0.2); color: #67e8f9; }
+  .badge-교통주차 { background: rgba(6,182,212,0.2); color: #67e8f9; }
+  .badge-교통주유 { background: rgba(6,182,212,0.2); color: #67e8f9; }
+  .badge-주거월세 { background: rgba(132,204,22,0.2); color: #bef264; }
+  .badge-주거관리비 { background: rgba(132,204,22,0.2); color: #bef264; }
+  .badge-주거통신 { background: rgba(132,204,22,0.2); color: #bef264; }
   .badge-교육 { background: rgba(245,158,11,0.2); color: #fcd34d; }
-  .badge-음식카페 { background: rgba(239,68,68,0.2); color: #fca5a5; }
-  .badge-병원의료 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
-  .badge-주거유틸 { background: rgba(132,204,22,0.2); color: #bef264; }
-  .badge-뷰티헬스 { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+  .badge-의료병원 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
+  .badge-의료약국 { background: rgba(236,72,153,0.2); color: #f9a8d4; }
+  .badge-뷰티 { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+  .badge-입금 { background: rgba(34,197,94,0.2); color: #86efac; }
   .amount { font-weight: 600; color: #f87171; }
 
   .account-badge {
@@ -1000,14 +1006,8 @@ function showMonthlyDetail(monthLabel, filteredMonthly, monthIndex) {
       amountSpan.textContent = fmt(tx.amount) + '원';
       amountSpan.style.cssText = 'text-align:right; min-width:100px; color:#06b6d4';
 
-      const editBtn = document.createElement('button');
-      editBtn.textContent = '수정';
-      editBtn.style.cssText = 'background:#6366f1; color:white; border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:0.8rem; margin-left:8px';
-      editBtn.onclick = () => editTransactionCategory(tx.name, tx.cat);
-
       itemDiv.appendChild(leftDiv);
       itemDiv.appendChild(amountSpan);
-      itemDiv.appendChild(editBtn);
       itemsDiv.appendChild(itemDiv);
     });
 
@@ -1559,7 +1559,7 @@ function renderMerchantMapping() {
   if (!tbody) return;
 
   tbody.innerHTML = '';
-  const categories = ['기타', '음식/카페', '쇼핑', '택시/교통', '주거/유틸', '교육', '병원/의료', '뷰티/헬스', '입금'];
+  const categories = ['기타', '음식', '쇼핑', '교통/대중교통', '교통/주차', '교통/주유', '주거/월세', '주거/관리비', '주거/통신', '교육', '의료/병원', '의료/약국', '뷰티', '입금'];
 
   Object.entries(merchants).sort((a, b) => b[1].count - a[1].count).forEach(([name, data]) => {
     const mainCat = data.categories[0] || '기타';
@@ -1569,61 +1569,86 @@ function renderMerchantMapping() {
       <td style="text-align:center">${mainCat}</td>
       <td style="text-align:center">${data.count}건</td>
       <td>
-        <select id="cat_${name}" style="padding:4px; border-radius:4px; border:1px solid #334155; background:#263248; color:#e2e8f0">
+        <select id="cat_${name}" onchange="applyMerchantCategory('${name.replace(/'/g, "\\'")}', this.value)" style="padding:4px; border-radius:4px; border:1px solid #334155; background:#263248; color:#e2e8f0; cursor:pointer">
           ${categories.map(cat => `<option value="${cat}" ${cat === mainCat ? 'selected' : ''}>${cat}</option>`).join('')}
         </select>
-      </td>
-      <td style="text-align:center">
-        <button onclick="applyMerchantCategory('${name.replace(/'/g, "\\'")}', document.getElementById('cat_${name}').value)" style="padding:4px 8px; background:#6366f1; color:white; border:none; border-radius:4px; cursor:pointer; font-size:0.8rem">적용</button>
       </td>
     `;
     tbody.appendChild(row);
   });
 }
 
-function editTransactionCategory(merchantName, currentCategory) {
-  const categories = ['기타', '음식/카페', '쇼핑', '택시/교통', '주거/유틸', '교육', '병원/의료', '뷰티/헬스', '입금'];
-
-  // 카테고리 선택 프롬프트
-  const newCategory = prompt(
-    `${merchantName}의 카테고리를 변경합니다\n\n가능한 카테고리:\n${categories.join(', ')}\n\n새 카테고리:`,
-    currentCategory
-  );
-
-  if (newCategory && categories.includes(newCategory) && newCategory !== currentCategory) {
-    applyMerchantCategory(merchantName, newCategory);
-  }
-}
-
 function applyMerchantCategory(merchantName, newCategory) {
   const count = recentTransactions.filter(tx => tx.name === merchantName).length;
-  if (confirm(`${merchantName}의 ${count}건을 모두 "${newCategory}"로 변경하시겠습니까?`)) {
+
+  recentTransactions.forEach(tx => {
+    if (tx.name === merchantName) {
+      tx.cat = newCategory;
+    }
+  });
+
+  // Firebase에 업데이트 (선택한 상인의 거래만)
+  if (window.firebaseDb && window.firebaseRef) {
+    const updates = {};
     recentTransactions.forEach(tx => {
-      if (tx.name === merchantName) {
-        tx.cat = newCategory;
+      if (tx.name === merchantName) {  // 선택한 상인만 필터링
+        const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
+        updates[`transactions/${key}/category`] = newCategory;
       }
     });
-
-    // Firebase에 업데이트 (선택한 상인의 거래만)
-    if (window.firebaseDb && window.firebaseRef) {
-      const updates = {};
-      recentTransactions.forEach(tx => {
-        if (tx.name === merchantName) {  // 선택한 상인만 필터링
-          const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
-          updates[`transactions/${key}/category`] = newCategory;
-        }
-      });
-      try {
-        window.firebaseUpdate(window.firebaseRef(firebaseDb, '/'), updates);
-        console.log(`✅ ${merchantName}(${count}건) 카테고리가 Firebase에 저장됨`);
-      } catch(e) {
-        console.warn('Firebase 업데이트 실패:', e);
-      }
+    try {
+      window.firebaseUpdate(window.firebaseRef(firebaseDb, '/'), updates);
+      console.log(`✅ ${merchantName}(${count}건) 카테고리 변경 → ${newCategory}`);
+    } catch(e) {
+      console.warn('Firebase 업데이트 실패:', e);
     }
+  }
 
-    applyFilter();
-    renderMerchantMapping();
-    alert('적용되었습니다!');
+  applyFilter();
+  renderMerchantMapping();
+}
+
+// ============================
+// 카테고리 마이그레이션 (자동 변환)
+// ============================
+function migrateCategories() {
+  const categoryMap = {
+    '음식/카페': '음식',
+    '택시/교통': '교통/대중교통',
+    '주거/유틸': '주거/월세',
+    '병원/의료': '의료/병원',
+    '뷰티/헬스': '뷰티',
+    '기타': '기타',
+    '쇼핑': '쇼핑',
+    '교육': '교육',
+    '입금': '입금'
+  };
+
+  const updates = {};
+  let migrationCount = 0;
+
+  recentTransactions.forEach(tx => {
+    const oldCat = tx.cat;
+    const newCat = categoryMap[oldCat] || oldCat; // 매핑되지 않은 카테고리는 그대로
+
+    if (oldCat !== newCat) {
+      tx.cat = newCat;
+      migrationCount++;
+
+      // Firebase 업데이트 (모든 거래)
+      const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
+      updates[`transactions/${key}/category`] = newCat;
+    }
+  });
+
+  // Firebase에 일괄 업데이트
+  if (migrationCount > 0 && window.firebaseDb && window.firebaseRef) {
+    try {
+      window.firebaseUpdate(window.firebaseRef(firebaseDb, '/'), updates);
+      console.log(`✅ 카테고리 마이그레이션 완료: ${migrationCount}건 변환됨`);
+    } catch(e) {
+      console.warn('Firebase 마이그레이션 실패:', e);
+    }
   }
 }
 
@@ -1642,7 +1667,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('📊 하드코딩된 데이터 사용 중');
   }
 
-  // 3. 차트 초기화
+  // 3. 카테고리 자동 마이그레이션
+  migrateCategories();
+
+  // 4. 차트 초기화
   const { filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring } = getFilteredData();
   initCharts(filteredMonthly, filteredDaily, filteredCategory, filteredDow, filteredRecurring);
   updateTables(filteredDaily);
