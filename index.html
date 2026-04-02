@@ -839,7 +839,7 @@ function getFilteredData() {
   // Update period text
   const startText = startDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
   const endText = endDate.toLocaleDateString('ko-KR').replace(/\.$/, '');
-  document.getElementById('periodText').textContent =
+  document.getElementById('periodText').innerHTML =
     '분석 기간: ' + startText + ' ~ ' + endText + ' &nbsp;|&nbsp; 신한카드 · KB은행 · 신한은행';
 
   // Return filtered daily data for charts (aggregate by day)
@@ -1466,6 +1466,36 @@ async function uploadTransactionsToFirebase() {
 
 // Firebase에서 거래 데이터 로드
 async function loadTransactionsFromFirebase() {
+  // 먼저 로컬 JSON 파일에서 로드 시도
+  try {
+    const response = await fetch('firebase_transactions.json');
+    if (response.ok) {
+      const data = await response.json();
+      if (data.transactions && Array.isArray(data.transactions)) {
+        recentTransactions.length = 0; // 기존 데이터 제거
+
+        data.transactions.forEach(tx => {
+          recentTransactions.push({
+            date: tx.date,
+            name: tx.name || '',
+            amount: tx.amount,
+            cat: tx.category || '기타',
+            account: tx.account || ''
+          });
+        });
+
+        // 날짜순으로 정렬
+        recentTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        console.log('✅ 로컬 JSON에서 거래 로드됨:', recentTransactions.length + '건');
+        return true;
+      }
+    }
+  } catch (e) {
+    console.log('로컬 JSON 로드 시도했으나 실패:', e.message);
+  }
+
+  // Firebase 폴백
   if (!firebaseDb) {
     console.warn('Firebase 연결 없음. 하드코딩된 데이터 사용합니다.');
     return false;

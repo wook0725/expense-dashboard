@@ -1,0 +1,1699 @@
+{
+  "total": 242,
+  "transactions": [
+    {
+      "date": "2026-03-28",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 4500,
+      "account": ""
+    },
+    {
+      "date": "2026-03-28",
+      "name": "",
+      "category": "기타",
+      "amount": 5000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-27",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 4200,
+      "account": ""
+    },
+    {
+      "date": "2026-03-26",
+      "name": "",
+      "category": "기타",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-26",
+      "name": "",
+      "category": "기타",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-25",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 33900,
+      "account": ""
+    },
+    {
+      "date": "2026-03-20",
+      "name": "",
+      "category": "기타",
+      "amount": 500,
+      "account": ""
+    },
+    {
+      "date": "2026-03-20",
+      "name": "",
+      "category": "기타",
+      "amount": 1300,
+      "account": ""
+    },
+    {
+      "date": "2026-03-20",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 33000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-18",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 2400,
+      "account": ""
+    },
+    {
+      "date": "2026-03-13",
+      "name": "",
+      "category": "기타",
+      "amount": 362990,
+      "account": ""
+    },
+    {
+      "date": "2026-03-13",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 35850,
+      "account": ""
+    },
+    {
+      "date": "2026-03-13",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 2500,
+      "account": ""
+    },
+    {
+      "date": "2026-03-12",
+      "name": "",
+      "category": "기타",
+      "amount": 3278379,
+      "account": ""
+    },
+    {
+      "date": "2026-03-12",
+      "name": "",
+      "category": "기타",
+      "amount": 500000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-12",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-12",
+      "name": "",
+      "category": "기타",
+      "amount": 96000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 66800,
+      "account": ""
+    },
+    {
+      "date": "2026-03-10",
+      "name": "",
+      "category": "기타",
+      "amount": 353017,
+      "account": ""
+    },
+    {
+      "date": "2026-03-10",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 2000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-03",
+      "name": "",
+      "category": "기타",
+      "amount": 10000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-01",
+      "name": "",
+      "category": "기타",
+      "amount": 5000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-01",
+      "name": "",
+      "category": "기타",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2026-03-01",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-27",
+      "name": "",
+      "category": "기타",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-26",
+      "name": "",
+      "category": "기타",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-25",
+      "name": "",
+      "category": "기타",
+      "amount": 1300,
+      "account": ""
+    },
+    {
+      "date": "2026-02-20",
+      "name": "",
+      "category": "기타",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-20",
+      "name": "",
+      "category": "기타",
+      "amount": 55080,
+      "account": ""
+    },
+    {
+      "date": "2026-02-20",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 4600,
+      "account": ""
+    },
+    {
+      "date": "2026-02-20",
+      "name": "",
+      "category": "기타",
+      "amount": 118280,
+      "account": ""
+    },
+    {
+      "date": "2026-02-20",
+      "name": "",
+      "category": "기타",
+      "amount": 52501,
+      "account": ""
+    },
+    {
+      "date": "2026-02-18",
+      "name": "",
+      "category": "기타",
+      "amount": 15000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-18",
+      "name": "",
+      "category": "기타",
+      "amount": 10700,
+      "account": ""
+    },
+    {
+      "date": "2026-02-14",
+      "name": "",
+      "category": "기타",
+      "amount": 5500,
+      "account": ""
+    },
+    {
+      "date": "2026-02-12",
+      "name": "",
+      "category": "기타",
+      "amount": 500000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-12",
+      "name": "",
+      "category": "기타",
+      "amount": 4600,
+      "account": ""
+    },
+    {
+      "date": "2026-02-12",
+      "name": "",
+      "category": "기타",
+      "amount": 3971883,
+      "account": ""
+    },
+    {
+      "date": "2026-02-11",
+      "name": "",
+      "category": "기타",
+      "amount": 4000000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 42800,
+      "account": ""
+    },
+    {
+      "date": "2026-02-11",
+      "name": "",
+      "category": "기타",
+      "amount": 70610,
+      "account": ""
+    },
+    {
+      "date": "2026-02-11",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 2690,
+      "account": ""
+    },
+    {
+      "date": "2026-02-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 74200,
+      "account": ""
+    },
+    {
+      "date": "2026-02-10",
+      "name": "",
+      "category": "기타",
+      "amount": 353017,
+      "account": ""
+    },
+    {
+      "date": "2026-02-10",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 49891,
+      "account": ""
+    },
+    {
+      "date": "2026-02-05",
+      "name": "",
+      "category": "기타",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-05",
+      "name": "",
+      "category": "기타",
+      "amount": 1700,
+      "account": ""
+    },
+    {
+      "date": "2026-02-02",
+      "name": "",
+      "category": "기타",
+      "amount": 10000,
+      "account": ""
+    },
+    {
+      "date": "2026-02-01",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 10000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-25",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-21",
+      "name": "",
+      "category": "기타",
+      "amount": 2200,
+      "account": ""
+    },
+    {
+      "date": "2026-01-16",
+      "name": "",
+      "category": "기타",
+      "amount": 4600,
+      "account": ""
+    },
+    {
+      "date": "2026-01-16",
+      "name": "",
+      "category": "기타",
+      "amount": 6800,
+      "account": ""
+    },
+    {
+      "date": "2026-01-16",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-16",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-16",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-15",
+      "name": "",
+      "category": "기타",
+      "amount": 52501,
+      "account": ""
+    },
+    {
+      "date": "2026-01-15",
+      "name": "",
+      "category": "기타",
+      "amount": 55080,
+      "account": ""
+    },
+    {
+      "date": "2026-01-15",
+      "name": "",
+      "category": "기타",
+      "amount": 118280,
+      "account": ""
+    },
+    {
+      "date": "2026-01-12",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 2000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-12",
+      "name": "",
+      "category": "기타",
+      "amount": 53290,
+      "account": ""
+    },
+    {
+      "date": "2026-01-12",
+      "name": "",
+      "category": "기타",
+      "amount": 1241005,
+      "account": ""
+    },
+    {
+      "date": "2026-01-12",
+      "name": "",
+      "category": "기타",
+      "amount": 101404,
+      "account": ""
+    },
+    {
+      "date": "2026-01-12",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 74200,
+      "account": ""
+    },
+    {
+      "date": "2026-01-11",
+      "name": "",
+      "category": "기타",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-11",
+      "name": "",
+      "category": "기타",
+      "amount": 1368000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-09",
+      "name": "",
+      "category": "기타",
+      "amount": 600,
+      "account": ""
+    },
+    {
+      "date": "2026-01-09",
+      "name": "",
+      "category": "기타",
+      "amount": 86800,
+      "account": ""
+    },
+    {
+      "date": "2026-01-08",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-07",
+      "name": "",
+      "category": "기타",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-07",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 550000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-07",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 106078,
+      "account": ""
+    },
+    {
+      "date": "2026-01-07",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1500,
+      "account": ""
+    },
+    {
+      "date": "2026-01-06",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 3500,
+      "account": ""
+    },
+    {
+      "date": "2026-01-04",
+      "name": "",
+      "category": "기타",
+      "amount": 7500,
+      "account": ""
+    },
+    {
+      "date": "2026-01-03",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 290000,
+      "account": ""
+    },
+    {
+      "date": "2026-01-01",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 1100,
+      "account": ""
+    },
+    {
+      "date": "2025-12-30",
+      "name": "",
+      "category": "기타",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2025-12-30",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 12500,
+      "account": ""
+    },
+    {
+      "date": "2025-12-30",
+      "name": "",
+      "category": "기타",
+      "amount": 1000,
+      "account": ""
+    },
+    {
+      "date": "2025-12-30",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2025-12-30",
+      "name": "",
+      "category": "기타",
+      "amount": 6600,
+      "account": ""
+    },
+    {
+      "date": "2025-12-29",
+      "name": "",
+      "category": "기타",
+      "amount": 32366,
+      "account": ""
+    },
+    {
+      "date": "2025-12-28",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 28590,
+      "account": ""
+    },
+    {
+      "date": "2025-12-27",
+      "name": "",
+      "category": "기타",
+      "amount": 2000,
+      "account": ""
+    },
+    {
+      "date": "2025-12-25",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 41470,
+      "account": ""
+    },
+    {
+      "date": "2025-12-25",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 6950,
+      "account": ""
+    },
+    {
+      "date": "2025-12-24",
+      "name": "",
+      "category": "기타",
+      "amount": 194620,
+      "account": ""
+    },
+    {
+      "date": "2025-12-24",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 24800,
+      "account": ""
+    },
+    {
+      "date": "2025-12-22",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 24217,
+      "account": ""
+    },
+    {
+      "date": "2025-12-22",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 52090,
+      "account": ""
+    },
+    {
+      "date": "2025-12-20",
+      "name": "",
+      "category": "기타",
+      "amount": 1600,
+      "account": ""
+    },
+    {
+      "date": "2025-12-18",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 5500,
+      "account": ""
+    },
+    {
+      "date": "2025-12-17",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 1300,
+      "account": ""
+    },
+    {
+      "date": "2025-12-16",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 3200,
+      "account": ""
+    },
+    {
+      "date": "2025-12-13",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 14800,
+      "account": ""
+    },
+    {
+      "date": "2025-12-11",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 46250,
+      "account": ""
+    },
+    {
+      "date": "2025-12-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 74200,
+      "account": ""
+    },
+    {
+      "date": "2025-12-11",
+      "name": "",
+      "category": "기타",
+      "amount": 51090,
+      "account": ""
+    },
+    {
+      "date": "2025-12-11",
+      "name": "",
+      "category": "기타",
+      "amount": 3400,
+      "account": ""
+    },
+    {
+      "date": "2025-12-04",
+      "name": "",
+      "category": "기타",
+      "amount": 96000,
+      "account": ""
+    },
+    {
+      "date": "2025-12-04",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50780,
+      "account": ""
+    },
+    {
+      "date": "2025-12-03",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 21930,
+      "account": ""
+    },
+    {
+      "date": "2025-12-01",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1500,
+      "account": ""
+    },
+    {
+      "date": "2025-12-01",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 2100,
+      "account": ""
+    },
+    {
+      "date": "2025-11-30",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-27",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 19200,
+      "account": ""
+    },
+    {
+      "date": "2025-11-26",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 2800,
+      "account": ""
+    },
+    {
+      "date": "2025-11-25",
+      "name": "",
+      "category": "기타",
+      "amount": 199800,
+      "account": ""
+    },
+    {
+      "date": "2025-11-25",
+      "name": "",
+      "category": "입금",
+      "amount": 59713,
+      "account": ""
+    },
+    {
+      "date": "2025-11-24",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 2200,
+      "account": ""
+    },
+    {
+      "date": "2025-11-24",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 3700,
+      "account": ""
+    },
+    {
+      "date": "2025-11-24",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 3900,
+      "account": ""
+    },
+    {
+      "date": "2025-11-24",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-21",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 9600,
+      "account": ""
+    },
+    {
+      "date": "2025-11-21",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 28360,
+      "account": ""
+    },
+    {
+      "date": "2025-11-20",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-19",
+      "name": "",
+      "category": "기타",
+      "amount": 11566,
+      "account": ""
+    },
+    {
+      "date": "2025-11-18",
+      "name": "",
+      "category": "기타",
+      "amount": 33000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-18",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 65820,
+      "account": ""
+    },
+    {
+      "date": "2025-11-16",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-15",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-15",
+      "name": "",
+      "category": "기타",
+      "amount": 8700,
+      "account": ""
+    },
+    {
+      "date": "2025-11-15",
+      "name": "",
+      "category": "입금",
+      "amount": 11970,
+      "account": ""
+    },
+    {
+      "date": "2025-11-14",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 10000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-13",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-13",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-13",
+      "name": "",
+      "category": "기타",
+      "amount": 35100,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 46250,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 74200,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "기타",
+      "amount": 48890,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "기타",
+      "amount": 19800,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "기타",
+      "amount": 5500,
+      "account": ""
+    },
+    {
+      "date": "2025-11-11",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 15000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-10",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 83020,
+      "account": ""
+    },
+    {
+      "date": "2025-11-10",
+      "name": "",
+      "category": "기타",
+      "amount": 12600,
+      "account": ""
+    },
+    {
+      "date": "2025-11-10",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 5600,
+      "account": ""
+    },
+    {
+      "date": "2025-11-09",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 28960,
+      "account": ""
+    },
+    {
+      "date": "2025-11-09",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 76400,
+      "account": ""
+    },
+    {
+      "date": "2025-11-09",
+      "name": "",
+      "category": "기타",
+      "amount": 13162,
+      "account": ""
+    },
+    {
+      "date": "2025-11-09",
+      "name": "",
+      "category": "기타",
+      "amount": 12676,
+      "account": ""
+    },
+    {
+      "date": "2025-11-08",
+      "name": "",
+      "category": "기타",
+      "amount": 112380,
+      "account": ""
+    },
+    {
+      "date": "2025-11-08",
+      "name": "",
+      "category": "기타",
+      "amount": 7000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-06",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "교육",
+      "amount": 195300,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 2500,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "기타",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "교육",
+      "amount": 210000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 33920,
+      "account": ""
+    },
+    {
+      "date": "2025-11-05",
+      "name": "",
+      "category": "교육",
+      "amount": 170000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-04",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 34200,
+      "account": ""
+    },
+    {
+      "date": "2025-11-02",
+      "name": "",
+      "category": "기타",
+      "amount": 5800,
+      "account": ""
+    },
+    {
+      "date": "2025-11-02",
+      "name": "",
+      "category": "기타",
+      "amount": 10000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-02",
+      "name": "",
+      "category": "기타",
+      "amount": 89900,
+      "account": ""
+    },
+    {
+      "date": "2025-11-02",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 3300,
+      "account": ""
+    },
+    {
+      "date": "2025-11-01",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 8990,
+      "account": ""
+    },
+    {
+      "date": "2025-11-01",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 22550,
+      "account": ""
+    },
+    {
+      "date": "2025-11-01",
+      "name": "",
+      "category": "뷰티/헬스",
+      "amount": 80000,
+      "account": ""
+    },
+    {
+      "date": "2025-11-01",
+      "name": "",
+      "category": "기타",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-31",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 27900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-30",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 35000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-30",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 26100,
+      "account": ""
+    },
+    {
+      "date": "2025-10-30",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-30",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 6500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-29",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 15500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-29",
+      "name": "",
+      "category": "기타",
+      "amount": 15900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-29",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 7500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-29",
+      "name": "",
+      "category": "기타",
+      "amount": 400,
+      "account": ""
+    },
+    {
+      "date": "2025-10-28",
+      "name": "",
+      "category": "기타",
+      "amount": 1500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-28",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 5000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-27",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 4500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-27",
+      "name": "",
+      "category": "기타",
+      "amount": 219800,
+      "account": ""
+    },
+    {
+      "date": "2025-10-26",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 121000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-26",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 343200,
+      "account": ""
+    },
+    {
+      "date": "2025-10-26",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 1700,
+      "account": ""
+    },
+    {
+      "date": "2025-10-25",
+      "name": "",
+      "category": "기타",
+      "amount": 31000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-25",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1800,
+      "account": ""
+    },
+    {
+      "date": "2025-10-25",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 8000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-25",
+      "name": "",
+      "category": "기타",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-24",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 3800,
+      "account": ""
+    },
+    {
+      "date": "2025-10-24",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 39900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-24",
+      "name": "",
+      "category": "기타",
+      "amount": 2700,
+      "account": ""
+    },
+    {
+      "date": "2025-10-24",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 3200,
+      "account": ""
+    },
+    {
+      "date": "2025-10-24",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-23",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 61710,
+      "account": ""
+    },
+    {
+      "date": "2025-10-22",
+      "name": "",
+      "category": "기타",
+      "amount": 12550,
+      "account": ""
+    },
+    {
+      "date": "2025-10-21",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 15500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-21",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1800,
+      "account": ""
+    },
+    {
+      "date": "2025-10-20",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 9900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-20",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 3700,
+      "account": ""
+    },
+    {
+      "date": "2025-10-19",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-19",
+      "name": "",
+      "category": "기타",
+      "amount": 4100,
+      "account": ""
+    },
+    {
+      "date": "2025-10-19",
+      "name": "",
+      "category": "기타",
+      "amount": 10400,
+      "account": ""
+    },
+    {
+      "date": "2025-10-19",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 2400,
+      "account": ""
+    },
+    {
+      "date": "2025-10-19",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 19300,
+      "account": ""
+    },
+    {
+      "date": "2025-10-18",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 29392,
+      "account": ""
+    },
+    {
+      "date": "2025-10-18",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1400,
+      "account": ""
+    },
+    {
+      "date": "2025-10-18",
+      "name": "",
+      "category": "기타",
+      "amount": 11000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-17",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 39000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-17",
+      "name": "",
+      "category": "기타",
+      "amount": 5990,
+      "account": ""
+    },
+    {
+      "date": "2025-10-17",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 2900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-17",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 108200,
+      "account": ""
+    },
+    {
+      "date": "2025-10-17",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 4000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-16",
+      "name": "",
+      "category": "기타",
+      "amount": 11940,
+      "account": ""
+    },
+    {
+      "date": "2025-10-15",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 11000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-14",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 4900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-14",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 3000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-13",
+      "name": "",
+      "category": "주거/유틸",
+      "amount": 46270,
+      "account": ""
+    },
+    {
+      "date": "2025-10-13",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 74200,
+      "account": ""
+    },
+    {
+      "date": "2025-10-13",
+      "name": "",
+      "category": "기타",
+      "amount": 48890,
+      "account": ""
+    },
+    {
+      "date": "2025-10-12",
+      "name": "",
+      "category": "기타",
+      "amount": 5300,
+      "account": ""
+    },
+    {
+      "date": "2025-10-12",
+      "name": "",
+      "category": "기타",
+      "amount": 6300,
+      "account": ""
+    },
+    {
+      "date": "2025-10-12",
+      "name": "",
+      "category": "기타",
+      "amount": 2400,
+      "account": ""
+    },
+    {
+      "date": "2025-10-12",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 43650,
+      "account": ""
+    },
+    {
+      "date": "2025-10-11",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 7900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-11",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 1800,
+      "account": ""
+    },
+    {
+      "date": "2025-10-10",
+      "name": "",
+      "category": "뷰티/헬스",
+      "amount": 76000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-10",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 2000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-09",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 5600,
+      "account": ""
+    },
+    {
+      "date": "2025-10-09",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 29436,
+      "account": ""
+    },
+    {
+      "date": "2025-10-09",
+      "name": "",
+      "category": "기타",
+      "amount": 1500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-08",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 45100,
+      "account": ""
+    },
+    {
+      "date": "2025-10-08",
+      "name": "",
+      "category": "기타",
+      "amount": 10200,
+      "account": ""
+    },
+    {
+      "date": "2025-10-08",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-08",
+      "name": "",
+      "category": "기타",
+      "amount": 12900,
+      "account": ""
+    },
+    {
+      "date": "2025-10-08",
+      "name": "",
+      "category": "병원/의료",
+      "amount": 102500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-07",
+      "name": "",
+      "category": "기타",
+      "amount": 2500,
+      "account": ""
+    },
+    {
+      "date": "2025-10-07",
+      "name": "",
+      "category": "기타",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-05",
+      "name": "",
+      "category": "기타",
+      "amount": 29700,
+      "account": ""
+    },
+    {
+      "date": "2025-10-04",
+      "name": "",
+      "category": "기타",
+      "amount": 88380,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 108620,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "음식/카페",
+      "amount": 70000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "택시/교통",
+      "amount": 50000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "기타",
+      "amount": 16100,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "기타",
+      "amount": 60000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-03",
+      "name": "",
+      "category": "기타",
+      "amount": 9000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-02",
+      "name": "",
+      "category": "교육",
+      "amount": 180000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-02",
+      "name": "",
+      "category": "교육",
+      "amount": 210000,
+      "account": ""
+    },
+    {
+      "date": "2025-10-01",
+      "name": "",
+      "category": "교육",
+      "amount": 170000,
+      "account": ""
+    },
+    {
+      "date": "2025-09-30",
+      "name": "",
+      "category": "기타",
+      "amount": 17100,
+      "account": ""
+    },
+    {
+      "date": "2025-09-30",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 4200,
+      "account": ""
+    },
+    {
+      "date": "2025-09-30",
+      "name": "",
+      "category": "쇼핑",
+      "amount": 15500,
+      "account": ""
+    }
+  ]
+}
