@@ -297,7 +297,7 @@
       try {
         const transactionsObj = {};
         transactions.forEach((tx, idx) => {
-          const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]]/g, '_');
+          const key = `${tx.date}|${tx.name}|${tx.amount}`.replace(/[.|#$\/\[\]\|]/g, '_');
           transactionsObj[key] = {
             date: tx.date,
             name: tx.name,
