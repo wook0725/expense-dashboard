@@ -1,0 +1,14 @@
+# 이 파일은 Netlify UI 설정보다 우선한다.
+# 루트 index.html 이 Vite 진입점(/src/main.ts 참조)이 되었으므로,
+# 빌드 없이 정적 서빙하면 동작하지 않는다. 빌드 산출물인 dist/ 를 배포한다.
+#
+# Firebase 설정은 빌드 시점에 번들로 들어가므로,
+# Netlify 사이트 환경변수에 VITE_FIREBASE_* 값이 등록되어 있어야 한다.
+# (Site configuration → Environment variables, .env.example 의 키 목록 참고)
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
